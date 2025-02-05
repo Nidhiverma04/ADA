@@ -1,4 +1,5 @@
-### LAB-1(23 January 2025)
+LAB-1(23 January 2025)
+----------------------
 QUES 1 ->  
 AIM : To calculate the cosine similarity between two text files by analyzing word frequency and identifying common words.
 WORKING : 1. Start  
@@ -94,7 +95,9 @@ OUTPUT :        Input - Enter size (m x n): 4 5                                 
 TIME COMPLEXITY : O(m log n), m = rows, n = cols
 SPACE COMPLEXITY : O(1)
 
-### LAB-2(30 January 2025)
+LAB-2(30 January 2025)
+----------------------
+
 QUES 1 ->  
 AIM : To measure the execution time of Bubble Sort for varying array sizes and plot the complexity graph.
 WORKING : 1. Start  
