@@ -1,5 +1,4 @@
-LAB-1(23 January 2025)
--------------------
+LAB-1(23 January 204 ->----------------
 QUES 1 ->  
 AIM : To calculate the cosine similarity between two text files by analyzing word frequency and identifying common words.
 WORKING : 1. Start  
@@ -95,8 +94,7 @@ OUTPUT :        Input - Enter size (m x n): 4 5                                 
 TIME COMPLEXITY : O(m log n), m = rows, n = cols
 SPACE COMPLEXITY : O(1)
 
-LAB-2(30 January 2025)
--------------------
+LAB-2(30 January 204 ->----------------
 QUES 1 ->  
 AIM : To measure the execution time of Bubble Sort for varying array sizes and plot the complexity graph.
 WORKING : 1. Start  
@@ -151,3 +149,95 @@ TIME COMPLEXITY : O(n²), worst && O(n), best
 SPACE COMPLEXITY : O(1)
 
 ![image](https://github.com/user-attachments/assets/ce65964f-3e1a-4387-b15d-780b4c6f6ce8)
+
+
+QUES 3 ->  
+AIM : To measure the execution time of Magic Square for varying array sizes and plot the complexity graph.  
+WORKING : 1. Start  
+          2. Input:  
+             - The program generates Magic Squares of sizes \(3, 5, 7, ..., 25001\).  
+             - For each size, a Magic Square is created using a standard method (starting from the middle of the top row and filling numbers in a specific pattern).  
+          3. Magic Square Algorithm:  
+             - Initialize a 2D array of size \(n \times n\) with zeros.  
+             - Start placing numbers from 1 to \(n^2\) in the square, following the rule:
+               - Place the next number in the position above and to the left of the previous one.
+               - If that position is already filled, place the number directly below the previous number.  
+          4. Measure Time:  
+             - Use `high_resolution_clock::now()` to measure the time taken for each Magic Square generation.  
+             - The time is recorded for 5 iterations per size, and the average time is calculated in microseconds using `duration_cast<microseconds>`.  
+          5. Store Results:  
+             - The size of the Magic Square is written to `size.csv`.  
+             - The average time taken for generating the Magic Square is written to `time.csv`.  
+          6. Output: The program outputs "done" after completing the measurements.  
+          7. Stop   
+        
+OUTPUT : Two CSV files are generated:  
+        - `size.csv`: Contains the array sizes for which the sort was performed.  
+        - `time.csv`: Contains the average time taken for each array size (in seconds).                         
+                                              
+TIME COMPLEXITY : O(n²)
+SPACE COMPLEXITY : O(n²)
+
+![image](https://github.com/user-attachments/assets/c3949b24-78cc-406a-bad5-699566d2fa9a)
+
+
+QUES 4 ->
+
+AIM : To measure the execution time of Quick Sort for varying array sizes and output the results to CSV files.  
+
+WORKING : 1. Start  
+          2. Input:  
+             - The program generates arrays of sizes \(13, 26, 52, 104, ..., 90000\), where each array size is determined by the formula (n = n log(n)).  
+             - For each size, the array is initialized with elements from 0 to \(n-1\).  
+          3. Quick Sort Algorithm:  
+             - The program executes Quick Sort 10 times for each array to ensure consistent timing.  
+             - The partitioning step picks the first element as the pivot, and elements are rearranged such that elements less than the pivot are on the left, and elements greater than the pivot are on the right.  
+          4. Measure Time:  
+             - Use `clock_t` to measure the time taken for each sorting operation.  
+             - The time is recorded for 10 iterations, and the average time is calculated using `double(end - start) / CLOCKS_PER_SEC`.  
+          5. Store Results:  
+             - The array size is written to `size.csv`.  
+             - The average time taken for sorting each array is written to `time.csv`.  
+          6. Output: The program outputs "done at end" after completing the measurements.  
+          7. Stop  
+
+OUTPUT : Two CSV files are generated:    
+          - `size.csv`: Contains the array sizes for which the sort was performed.    
+          - `time.csv`: Contains the average time taken for sorting each array (in seconds).  
+
+TIME COMPLEXITY :   - Best & Average Case: O(n log n) due to the divide-and-conquer nature of the algorithm.  
+                    - Worst Case: O(n²) when the pivot is always the smallest or largest element.
+SPACE COMPLEXITY : O(log n) for the recursion stack in the average case.
+
+![image](https://github.com/user-attachments/assets/6fde7bce-157e-463b-8879-3e44f959ea49)
+
+![image](https://github.com/user-attachments/assets/d5fb4901-dc38-49f9-a3c9-9184d119c6b1)
+
+QUES 5 ->  
+AIM : To measure the execution time of Selection Sort for varying array sizes and plot the complexity graph.
+WORKING : 1. Start  
+          2. Input:  
+             - The program generates arrays of sizes (2, 4, 8, 16, ..., 25000).  
+             - For each size, the array is filled with elements in descending order.  
+          3. Bubble Sort:  
+             - For each array, the Selection Sort algorithm is executed 100 times to ensure consistent timing.  
+             - After each sort, the sorted array is discarded, and the next iteration is performed.  
+          4. Measure Time:  
+             - Use `clock()` to measure the time taken for each sorting operation.  
+             - The time is recorded for 100 iterations, and the average time per sort is calculated.  
+          5. Store Results:  
+             - The array size is written to `size.csv`.  
+             - The average time per sort is written to `time.csv`.  
+          6. Output: The program outputs "done" after completing the measurements.  
+          7. Stop 
+        
+OUTPUT : Two CSV files are generated:
+        - `size.csv`: Contains the array sizes for which the sort was performed.
+        - `time.csv`: Contains the average time taken for each array size (in seconds).                       
+                                              
+TIME COMPLEXITY : O(n²)
+SPACE COMPLEXITY : O(1)
+
+![image](https://github.com/user-attachments/assets/ba7a5629-587c-4d14-9451-1df720492d43)
+
+
