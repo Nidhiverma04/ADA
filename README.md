@@ -243,3 +243,41 @@ SPACE COMPLEXITY : O(1)
 ![image](https://github.com/user-attachments/assets/ba7a5629-587c-4d14-9451-1df720492d43)
 
 
+LAB-1(6 February 2025)
+----------------------
+QUES 1 ->  
+AIM : To implement and analyze the Fractional Knapsack Problem using QuickSort for sorting items based on different criteria.  
+WORKING : 1. Start   
+          2. Input:  
+             - The program initializes items with random weights (1-7) and profits (1-20).  
+             - The profit-to-weight ratio is computed for each item.  
+             - The knapsack capacity is set to 20.  
+          3. Sorting Strategy (QuickSort):  
+             - The items are sorted based on:
+               - Weight (ascending)
+               - Profit (descending)
+               - Profit-to-weight ratio (descending)  
+          4. Fractional Knapsack Algorithm:  
+             - The program iterates over the sorted items and fills the knapsack:
+               - If an entire item can fit, it's fully included.
+               - If not, a fraction of it is added to maximize the total profit.  
+          5. Measure Performance:  
+             - The algorithm is executed three times, each with a different sorting criterion.  
+             - The final profit is calculated and displayed for each case.  
+          6. Output:  
+             - The program prints the randomly generated item data.  
+             - It then prints the total profit obtained when sorting by:
+               - Weight
+               - Profit
+               - Profit-to-weight ratio  
+          7. Stop  
+          
+OUTPUT :  weight : 25  
+          profit : 38   
+          ratio : 39     
+
+TIME COMPLEXITY : O(n log n)  
+                    - Sorting (QuickSort): O(n log n)   
+                    - Knapsack Filling: O(n) 
+
+SPACE COMPLEXITY : O(n)  
