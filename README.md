@@ -243,7 +243,7 @@ SPACE COMPLEXITY : O(1)
 ![image](https://github.com/user-attachments/assets/ba7a5629-587c-4d14-9451-1df720492d43)
 
 
-LAB-1(6 February 2025)
+LAB-3(6 February 2025)
 ----------------------
 QUES 1 ->  
 AIM : To implement and analyze the Fractional Knapsack Problem using QuickSort for sorting items based on different criteria.  
