@@ -3,26 +3,137 @@
 #include<ctime>
 using namespace std;
 
-void matrix_mult(int** a, int** b, int sr1, int er1, int sc1, int ec1, int sr2, int er2, int sc2, int ec2, int** ans) {
-    if (er1 - sr1 < 2 && ec2 - sc2 < 2) {
+int** add(int** a, int** b, int n){
+    int** ans = new int*[n];
+    for(int i=0;i<n;i++){
+        ans[i] = new int[n];
+    }
 
-        int P = (a[sr1][sc1] + a[sr1 + 1][sc1 + 1]) * (a[sr1 + 1][sc1 + 1] + b[sr2][sc2 + 1]);
-        int Q = (a[sr1 + 1][sc1] + a[sr1 + 1][sc1 + 1]) *  b[sr2][sc2];
-        int R = a[sr1][sc1] * (b[sr2][sc2 + 1] - b[sr2][sc2 + 1]);
-        int S = a[sr1 + 1][sc1 + 1] * (b[sr2 + 1][sc2] - b[sr2][sc2 + 1]);
-        int T = (a[sr1][sc1] + a[sr1][sc1 + 1]) * b[sr2 + 1][sc2 + 1];
-        int U = (a[sr1 + 1][sc1] - a[sr1][sc1]) * ( b[sr2][sc2] + b[sr2][sc2 + 1]);
-        int V = (a[sr1][sc1 + 1] - a[sr1 + 1][sc1 + 1]) * (b[sr2+1][sc2] +  b[sr2 + 1][sc2 + 1]);
-        cout<<"done\n";
+    for(int i=0;i<n;i++){
+        for(int j=0;j<n;j++){
+            ans[i][j] = a[i][j] + b[i][j];
+        }
+    }
 
-        ans[sr1][sc2] += (P + S - T + V); 
-        ans[sr1][sc2 + 1] +=( R + T);
-        ans[sr1 + 1][sc2] += (Q + S);
-        ans[sr1 + 1][sc2 + 1] += (P + R - Q + U);
+    return ans;
+}
 
-        return;
+int** subt(int** a, int** b, int n){
+    int** ans = new int*[n];
+    for(int i=0;i<n;i++){
+        ans[i] = new int[n];
+    }
+
+    for(int i=0;i<n;i++){
+        for(int j=0;j<n;j++){
+            ans[i][j] = a[i][j] - b[i][j];
+        }
+    }
+
+    return ans;
+}
+
+int** conventional_mult(int** a, int** b , int n){
+    int** ans = new int*[n];
+    for(int i=0;i<n;i++){
+        ans[i] = new int[n];
+    }
+    for(int i=0;i<n;i++){
+        for(int j=0;j<n;j++){
+            ans[i][j] = 0;
+        }
+    }
+
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            for (int k = 0; k < n; k++) {
+                ans[i][j] += a[i][k] * b[k][j];
+            }
+        }
     }
     
+    return ans;
+}
+
+int** matrix_mult(int** a, int** b, int n) {
+
+    if(n<=2){
+        return conventional_mult(a, b, n);
+    }
+
+    int** a00 = new int*[n/2];
+    int** a01 = new int*[n/2];
+    int** a10 = new int*[n/2];
+    int** a11 = new int*[n/2];
+    int** b00 = new int*[n/2];
+    int** b01 = new int*[n/2];
+    int** b10 = new int*[n/2];
+    int** b11 = new int*[n/2];
+    
+    for(int i=0;i<n/2;i++){
+        a00[i] = new int[n/2];
+        a01[i] = new int[n/2];
+        a10[i] = new int[n/2];
+        a11[i] = new int[n/2];
+        b00[i] = new int[n/2];
+        b01[i] = new int[n/2];
+        b10[i] = new int[n/2];
+        b11[i] = new int[n/2];
+    }
+    for(int i =0;i<n/2;i++){
+        for(int j=0;j<n/2;j++){
+            a00[i][j] = a[i][j];
+            a01[i][j] = a[i][j+ n/2];
+            a10[i][j] = a[i+ n/2][j];
+            a11[i][j] = a[i+n/2][j+n/2];
+            b00[i][j] = b[i][j];
+            b01[i][j] = b[i][j+ n/2];
+            b10[i][j] = b[i+ n/2][j];
+            b11[i][j] = b[i+n/2][j+n/2];
+        }
+    }
+
+
+    int** P = matrix_mult( add(a00, a11, n/2) , add(b00, b11, n/2), n/2);
+    int** Q = matrix_mult( add(a10, a11, n/2) , b00, n/2);
+    int** R = matrix_mult( a00 , subt(b01, b11, n/2), n/2);
+    int** S = matrix_mult( a11 , subt(b10, b00, n/2), n/2);
+    int** T = matrix_mult( add(a00, a01, n/2) , b11, n/2);
+    int** U = matrix_mult( subt(a10, a00, n/2) , add(b00, b01, n/2), n/2);
+    int** V = matrix_mult( subt(a01, a11, n/2) , add(b10, b11, n/2), n/2);
+    cout<<"done\n";
+
+    int** c00 = new int*[n/2];
+    int** c01 = new int*[n/2];
+    int** c10 = new int*[n/2];
+    int** c11 = new int*[n/2];
+    for(int i=0;i<n/2;i++){
+        c00[i] = new int[n/2];
+        c01[i] = new int[n/2];
+        c10[i] = new int[n/2];
+        c11[i] = new int[n/2];
+    }
+
+    c00 = add(add(P, S, n/2), subt(V, T, n/2), n/2); 
+    c01 = add(R, T, n/2);
+    c10 = add(Q, S, n/2);
+    c11 = add(add(P, R, n/2) , subt(U, Q, n/2), n/2);
+
+    int** c = new int*[n];
+    for(int i=0;i<n;i++){
+        c[i] = new int[n];
+    }
+
+    for(int i=0;i<n/2;i++){
+        for(int j=0;j<n/2;j++){
+            c[i][j] = c00[i][j];
+            c[i][j+ n/2] = c01[i][j];
+            c[i+ n/2][j] = c10[i][j];
+            c[i+ n/2][j+ n/2] = c11[i][j];
+        }
+    }
+
+    return c;
 }
 
 int main() {
@@ -50,7 +161,7 @@ int main() {
         }
     }
 
-    matrix_mult(arr, b, 0, size - 1, 0, size - 1, 0, size - 1, 0, size - 1, ans);
+    ans = matrix_mult(arr, b, size);
 
     cout << "\nStrassen's Matrix Multiplication Result: \n";
     for (int i = 0; i < size; i++) {
