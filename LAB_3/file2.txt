@@ -1,1 +1,0 @@
-Machine learning, a branch of artificial intelligence, aims to develop systems capable of learning from data and making decisions. It relies on statistical methods to help computers enhance their performance through experience. Popular applications include recommendation systems, fraud detection, and NLP.

@@ -1,1 +1,0 @@
-Machine learning is a subset of artificial intelligence that focuses on building systems that can learn from and make decisions based on data. It uses statistical techniques to enable computers to improve their performance on a task through experience. Common applications include recommendation systems, fraud detection, and natural language processing.
