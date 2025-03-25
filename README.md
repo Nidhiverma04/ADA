@@ -95,6 +95,31 @@ OUTPUT :        Input - Enter size (m x n): 4 5                                 
 TIME COMPLEXITY : O(m log n), m = rows, n = cols
 SPACE COMPLEXITY : O(1)
 
+QUES 5 ->  
+AIM : To calculate a^b (a raised to the power of b) using the Exponentiation by Squaring method.
+WORKING :       1. Start  
+		2. Input:  
+		   - Base ( a ) and exponent ( b ).  
+		
+		3. Handle Base Cases:  
+		   - If ( a = 1 ), return 1 (since ( 1^b = 1 )).  
+		   - If ( b = 0 ), return 1 (since any number raised to power 0 is 1).  
+		
+		4. Iterative Computation:  
+		   - Initialize `res = 1`.  
+		   - While ( b ) is greater than 0:  
+		     - If ( b ) is odd, multiply `res` by `a`.  
+		     - Update ( a = a times a ).  
+		     - Perform integer division ( b = b/2 ).  
+		   
+		5. Return the Result:  
+		   - The final value of `res` is ( a^b ).  
+
+OUTPUT :    Input - Enter a and b : 2 5                                                                  Output - Power: 32
+
+TIME COMPLEXITY : O(log b)
+SPACE COMPLEXITY : O(1)  
+
 LAB-2(30 January 2025)
 ----------------------
 
