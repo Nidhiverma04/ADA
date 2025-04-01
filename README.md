@@ -868,6 +868,38 @@ TIME COMPLEXITY : O(n³)
 
 SPACE COMPLEXITY : O(n²)
 
+QUES 2 ->
+AIM : Write a program to implement the Multistage Graph Shortest Path Algorithm using Backward Approach and determine the shortest path from source to destination.
+WORKING :   1. Start  
+            2. Input the number of vertices (`n`), number of edges (`edges`), and number of stages (`k`).  
+            3. Generate the adjacency matrix (`cost[n][n]`):  
+               - Set `cost[i][j] = 0` for `i == j`.  
+               - Set `cost[i][j] = ∞ (INT_MAX)` for all other edges.  
+            4. Input `edges` and update `cost[i][j]` while storing edge information in `edge[]`.  
+            5. Initialize an array `b_dist[n]` to store the shortest distances from each vertex to the source.  
+            6. Start Backward Calculation from the first vertex (`0`):  
+               - Set `b_dist[0] = 0`.  
+               - For each vertex `j` from `1` to `n-1`:  
+               - Find the previous vertex (`r`) that gives the minimum total cost.  
+               - Update `b_dist[j] = cost[r][j] + b_dist[r]`.  
+            7. Construct the Shortest Path from destination (`n-1`) back to source (`0`).  
+            8. Display the shortest path and its cost.  
+            9. Stop.  
+
+OUTPUT :    Input -  Enter number of vertices: 4                                   Output - Shortest Path:
+                     Enter number of edges: 5                                               3 <-- 2 <-- 0
+                     Enter number of stages: 3
+                     Enter edge (source, destination) and weight: 0 1 2
+                     Enter edge (source, destination) and weight: 0 2 4
+                     Enter edge (source, destination) and weight: 1 3 7
+                     Enter edge (source, destination) and weight: 2 3 1
+                     Enter edge (source, destination) and weight: 1 2 3
+
+TIME COMPLEXITY : O(n³) 
+
+SPACE COMPLEXITY : O(n)
+
+
 QUES 3 ->
 AIM : Write a program to implement the Multistage Graph Shortest Path Algorithm using Forward Approach and determine the shortest path from source to destination.
 WORKING :   1. Start  
@@ -904,6 +936,40 @@ SPACE COMPLEXITY : O(n)
 
 ![image](https://github.com/user-attachments/assets/36e224e6-e34b-42dd-acd2-180a4a45207a)
 
+QUES 4 ->
+AIM : Write a program to determine the maximum profit that can be obtained by selecting items within a given capacity constraint using the 0/1 Knapsack algorithm.
+WORKING :   1. Start  
+            2. Generate Random Inputs:  
+               - Set knapsack capacity (`c`) as a random number between 10 and 19.  
+               - Create 5 items, each having:  
+               - Storage (weight) = Random number between 1 and 10.  
+               - Profit (value) = Random number between 0 and 99.  
+            3. Display Items (Storage, Profit) and Knapsack Capacity (`c`).  
+            4. Initialize DP Table (`profit[6][c+1]`):  
+               - `profit[i][j] = 0` for `i == 0` or `j == 0`.  
+            5. Fill DP Table using Bottom-Up Approach:  
+               - Iterate over items (`i = 1` to `5`):  
+               - Iterate over capacities (`j = 1` to `c`):  
+                  - If the current item can fit (`j >= storage[i-1]`):  
+                     - Update `profit[i][j] = max(profit[i-1][j], profit[i-1][j - storage[i-1]] + profit[i-1])`.  
+                  - Else, inherit the value from the previous row:  
+                     - `profit[i][j] = profit[i-1][j]`.  
+            6. Display the Maximum Profit (`profit[5][c]`).  
+            7. Deallocate Memory used for arrays.  
+            8. Stop.  
+
+OUTPUT :    Input - Items (Storage, Profit):                                                 Output - Profit: 255
+                     (3, 25)
+                     (7, 64)
+                     (1, 92)
+                     (4, 78)
+                     (5, 41)
+                     Knapsack Capacity: 14
+
+TIME COMPLEXITY : O(n * c) 
+
+SPACE COMPLEXITY : O(n * c)
+ 
  
 QUES 5 ->
 AIM : Write a program to implement the Multistage Graph Problem and determine the number of stages required to reach the destination.
@@ -936,3 +1002,8 @@ SPACE COMPLEXITY : O(1)
 
 
 ![image](https://github.com/user-attachments/assets/48275cf2-c4e8-49a0-a725-823eb2064f9c)
+
+
+QUES 6 ->
+AIM : Write a program to implement the Multistage Graph Problem and determine the number of stages required to reach the destination.
+WORKING : 
