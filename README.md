@@ -901,6 +901,9 @@ TIME COMPLEXITY : O(n³)
 
 SPACE COMPLEXITY : O(n)
 
+![image](https://github.com/user-attachments/assets/5370815d-d1af-4a9f-88c1-4a66a1420f07)
+
+![image](https://github.com/user-attachments/assets/a75935a2-353e-4919-8c58-d11b66da54b3)
 
 QUES 3 ->
 AIM : Write a program to implement the Multistage Graph Shortest Path Algorithm using Forward Approach and 
@@ -937,7 +940,9 @@ TIME COMPLEXITY : O(n²)
 
 SPACE COMPLEXITY : O(n)
 
-![image](https://github.com/user-attachments/assets/36e224e6-e34b-42dd-acd2-180a4a45207a)
+![image](https://github.com/user-attachments/assets/ed62388d-61e8-4c72-81cd-09e4c1e6a49f)
+
+![image](https://github.com/user-attachments/assets/d7863f09-8bfe-4195-ae4c-974e35583a5d)
 
 QUES 4 ->
 AIM : Write a program to determine the maximum profit that can be obtained by selecting items within a given 
@@ -973,8 +978,9 @@ OUTPUT :    Input - Items (Storage, Profit):                                    
 TIME COMPLEXITY : O(n * c) 
 
 SPACE COMPLEXITY : O(n * c)
- 
- 
+
+![image](https://github.com/user-attachments/assets/e88e647b-5332-483f-990b-f26160bd5fbb)
+
 QUES 5 ->
 AIM : Write a program to implement the Multistage Graph Problem and determine the number of stages required to reach the destination.
 WORKING :   1. Start  
