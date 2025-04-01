@@ -71,6 +71,8 @@ OUTPUT :        Input - Enter size: 6                                           
 TIME COMPLEXITY : O(log n)
 SPACE COMPLEXITY : O(1)
 
+![image](https://github.com/user-attachments/assets/7b18f18f-0ae3-495f-b301-00b3109b962d)
+
 QUES 4 ->  
 AIM : To find a peak element in a 2D array, where a peak is an element that is greater than or equal to its neighbors.
 WORKING : 1. Start  
@@ -94,6 +96,10 @@ OUTPUT :        Input - Enter size (m x n): 4 5                                 
                                                                                                                                                                          
 TIME COMPLEXITY : O(m log n), m = rows, n = cols
 SPACE COMPLEXITY : O(1)
+
+![image](https://github.com/user-attachments/assets/b9efedc6-3096-4896-9792-af9fdf35aa46)
+
+![image](https://github.com/user-attachments/assets/d3f4508b-d435-4056-97ac-b5f7b4b98dca)
 
 QUES 5 ->
 AIM : To calculate a^b (a raised to the power of b) using the Exponentiation by Squaring method. 
@@ -119,6 +125,8 @@ OUTPUT :    Input - Enter a and b : 2 5                                         
 
 TIME COMPLEXITY : O(log b) 
 SPACE COMPLEXITY : O(1)
+
+![image](https://github.com/user-attachments/assets/88c33238-2705-480e-a3d7-74e68a20b932)
 
 LAB-2(30 January 2025)
 ----------------------
@@ -426,6 +434,8 @@ TIME COMPLEXITY : O(n log n)
 
 SPACE COMPLEXITY : O(n)  
 
+![image](https://github.com/user-attachments/assets/ad707fed-9e50-4bfb-8036-85d7771d4ced)
+
 LAB-4(13 February 2025)
 ----------------------
 QUES 1 ->  
@@ -459,6 +469,9 @@ TIME COMPLEXITY :  O(n³) ; due to 8 recursive calls on half-size matrices.
 
 SPACE COMPLEXITY : O(n²) ; Recursive Stack: O(log n) , Matrices `A`, `B`, and `Ans`: O(n²)
 
+![image](https://github.com/user-attachments/assets/34c694fc-f31a-439d-bc32-5f4ca28601d0)
+
+
 QUES 2 ->  
 AIM : Write a program to find the maximum and minimum elements in an array using the divide and conquer approach.  
 WORKING : 1. Start  
@@ -488,6 +501,8 @@ OUTPUT :    Input - Enter size: 6                                               
 
 TIME COMPLEXITY :  O(n)
 SPACE COMPLEXITY : O(log n)
+
+![image](https://github.com/user-attachments/assets/5ed448a6-f8f8-4a3c-98f9-5b3868cebed2)
 
 QUES 3 ->  
 AIM : Write a program to determine whether a randomly generated point lies inside or outside a randomly generated triangle.  
@@ -578,6 +593,9 @@ SPACE COMPLEXITY : O(n)
 
 ![image](https://github.com/user-attachments/assets/c019e4bd-8c09-460b-9567-f3a98c2b0641)
 
+![image](https://github.com/user-attachments/assets/5af04454-ffc3-4580-aa18-1fd29dc02652)
+
+![image](https://github.com/user-attachments/assets/54704049-bb65-4c29-be13-99fa4695f85c)
 
 LAB-5(27 February 2025)
 ----------------------
@@ -624,6 +642,8 @@ OUTPUT :  Size      Start     End       Duration         The end time-based appr
 TIME COMPLEXITY : O(n log n)
 SPACE COMPLEXITY : O(n)  
 
+![image](https://github.com/user-attachments/assets/80a848dc-d602-4431-91b9-11327daf9191)
+
 QUES 2 ->  
 AIM : Write a program to implement Dijkstra's Algorithm to find the shortest path from a source vertex to all other vertices in a weighted graph.  
 WORKING : 1. Start  
@@ -663,6 +683,8 @@ OUTPUT :    Input - Enter number of vertices: 4                                 
 
 TIME COMPLEXITY : O(n²)  
 SPACE COMPLEXITY : O(n²)   
+
+![image](https://github.com/user-attachments/assets/2798d66b-8d68-45b0-b977-14418df49e72)
 
 QUES 3 ->  
 AIM : Write a program to implement Strassen's Matrix Multiplication algorithm to multiply two square matrices 
@@ -710,6 +732,10 @@ SPACE COMPLEXITY : O(n²)
                     - Recursive stack space for partitioning: (O(log n))  
                     - Space for intermediate matrices:  O(n²) 
 
+![image](https://github.com/user-attachments/assets/64377ebd-fdea-4e73-893e-7a535bc975eb)
+
+![image](https://github.com/user-attachments/assets/a2381ff7-268e-4321-b95c-346342328bb2)
+
 
 QUES 4 ->
 AIM : To find the median of an unsorted array in O(n) time. 
@@ -731,6 +757,7 @@ TIME COMPLEXITY : O(n)- best/ average
                   O(n²) - worst  
 
 SPACE COMPLEXITY : O(1)  
+![image](https://github.com/user-attachments/assets/7255ae69-0bcc-4453-936b-64d662b503fa)
 
 
 LAB-6(20 March 2025)
@@ -766,6 +793,11 @@ SPACE COMPLEXITY : O(E + V)
                       - Storing edge list: O(E)  
                       - Parent array for Union-Find: O(V)  
                       - MST result storage: O(V)    
+![image](https://github.com/user-attachments/assets/e1f4bdef-dac1-4707-87b3-9caaad23734a)
+
+![image](https://github.com/user-attachments/assets/5c6317cf-844d-4900-8882-eb3a148d7006)
+
+![image](https://github.com/user-attachments/assets/e759997b-c0c1-48d1-8715-91013bed30c0)
 
 QUES 2 ->  
 AIM : Write a program to implement Prim's Algorithm for finding the Minimum Spanning Tree (MST) of a connected, weighted, and undirected graph.
@@ -798,6 +830,11 @@ OUTPUT :    Input - Enter number of vertices: 4                                 
 TIME COMPLEXITY : O(n²) 
 
 SPACE COMPLEXITY : O(n)
+![image](https://github.com/user-attachments/assets/005abf3e-d3ae-40fd-8fd2-3e57a9990b38)
+
+![image](https://github.com/user-attachments/assets/78d6fb92-26f6-4dad-8682-824d498c44bb)
+
+![image](https://github.com/user-attachments/assets/7d28e781-018b-4480-a8cb-871ac161a771)
 
 LAB-7(27 March 2025)
 ----------------------
@@ -865,6 +902,8 @@ TIME COMPLEXITY : O(n²)
 
 SPACE COMPLEXITY : O(n)
 
+![image](https://github.com/user-attachments/assets/36e224e6-e34b-42dd-acd2-180a4a45207a)
+
  
 QUES 5 ->
 AIM : Write a program to implement the Multistage Graph Problem and determine the number of stages required to reach the destination.
@@ -891,4 +930,9 @@ OUTPUT :    Input -  Enter number of vertices: 5                                
 
 TIME COMPLEXITY : O(n²) 
 
-SPACE COMPLEXITY : O(1) 
+SPACE COMPLEXITY : O(1)
+
+![image](https://github.com/user-attachments/assets/e271eec5-a3bc-4cc9-976c-8293b84b2bfa)
+
+
+![image](https://github.com/user-attachments/assets/48275cf2-c4e8-49a0-a725-823eb2064f9c)
