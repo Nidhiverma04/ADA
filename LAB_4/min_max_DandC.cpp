@@ -60,4 +60,6 @@ int main() {
     }
 
     cout<<"\nMax : "<<maximum<<" Min : "<<" "<<minimum;
-;}
+}
+
+

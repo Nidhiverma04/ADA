@@ -61,13 +61,8 @@ void Heapify(edgeInfo* edge, int n, int idx) {
     int left = 2 * idx + 1;
     int right = 2 * idx + 2;
 
-    if (left < n && edge[left].wt < edge[smallest].wt) {
-        smallest = left;
-    }
-    if (right < n && edge[right].wt < edge[smallest].wt) {
-        smallest = right;
-    }
-
+    if (left < n && edge[left].wt < edge[smallest].wt)  smallest = left;
+    if (right < n && edge[right].wt < edge[smallest].wt)  smallest = right;
     if (smallest != idx) {
         swap(edge[idx], edge[smallest]);
         Heapify(edge, n, smallest);

@@ -9,53 +9,47 @@ using namespace std;
 
 struct Point {
     int x, y;
+    bool operator==(const Point& other) const {
+        return x == other.x && y == other.y;
+    }
 };
 
-
-void generate_vertices(vector<Point> &vertices, int n) {
+void generate_vertices(vector<Point>& vertices, int n) {
+    vertices.clear();
     for (int i = 0; i < n; i++) {
-        vertices.push_back({rand() % 100, rand() % 100});
+        Point p = {rand() % 100, rand() % 100};
+        // Ensure no duplicate points
+        while (find(vertices.begin(), vertices.end(), p) != vertices.end()) {
+            p = {rand() % 100, rand() % 100};
+        }
+        vertices.push_back(p);
     }
 }
 
-void max_min(vector<Point> &vertices, int i, int j, int &maximum, int &minimum, int &maxIdx, int &minIdx) {
+void max_min(vector<Point>& vertices, int i, int j, int& maximum, int& minimum, int& maxIdx, int& minIdx) {
     if (i == j) {
-        if (vertices[i].x > maximum) {
-            maximum = vertices[i].x;
-            maxIdx = i;
-        }
-        if (vertices[i].x < minimum) {
-            minimum = vertices[i].x;
-            minIdx = i;
-        }
+        maximum = minimum = vertices[i].x;
+        maxIdx = minIdx = i;
         return;
-    } else if (i == j - 1) {
+    }
+
+    if (i == j - 1) {
         if (vertices[i].x > vertices[j].x) {
-            if (vertices[i].x > maximum) {
-                maximum = vertices[i].x;
-                maxIdx = i;
-            }
-            if (vertices[j].x < minimum) {
-                minimum = vertices[j].x;
-                minIdx = j;
-            }
+            maximum = vertices[i].x;
+            minimum = vertices[j].x;
+            maxIdx = i;
+            minIdx = j;
         } else {
-            if (vertices[j].x > maximum) {
-                maximum = vertices[j].x;
-                maxIdx = j;
-            }
-            if (vertices[i].x < minimum) {
-                minimum = vertices[i].x;
-                minIdx = i;
-            }
+            maximum = vertices[j].x;
+            minimum = vertices[i].x;
+            maxIdx = j;
+            minIdx = i;
         }
         return;
     }
 
     int mid = (i + j) / 2;
-    int max1 = vertices[mid + 1].x, min1 = vertices[mid + 1].x;
-    int maxIdx1 = mid + 1, minIdx1 = mid + 1;
-
+    int max1, min1, maxIdx1, minIdx1;
     max_min(vertices, i, mid, maximum, minimum, maxIdx, minIdx);
     max_min(vertices, mid + 1, j, max1, min1, maxIdx1, minIdx1);
 
@@ -69,76 +63,88 @@ void max_min(vector<Point> &vertices, int i, int j, int &maximum, int &minimum, 
     }
 }
 
-double area(int x1, int y1, int x2, int y2, int x3, int y3) {
-    return abs((x1 * (y2 - y3) + x2 * (y3 - y1) + x3 * (y1 - y2)) / 2.0);
+int cross_product(const Point& a, const Point& b, const Point& c) {
+    return (b.x - a.x) * (c.y - a.y) - (b.y - a.y) * (c.x - a.x);
 }
 
+int find_farthest(const vector<Point>& vertices, const vector<int>& indices, 
+                 const Point& a, const Point& b) {
+    int max_dist = 0;
+    int farthest_idx = -1;
 
-int farthest_point(vector<Point> &vertices, vector<int> &side, int minIdx, int maxIdx) {
-    double max_area = 0;
-    int idx = -1;
-
-    int x1 = vertices[minIdx].x;
-    int y1 = vertices[minIdx].y;
-    int x2 = vertices[maxIdx].x;
-    int y2 = vertices[maxIdx].y;
-
-    for (int i = 0; i < side.size(); i++) {
-        int pointIdx = side[i];
-        double curr_area = area(x1, y1, x2, y2, vertices[pointIdx].x, vertices[pointIdx].y);
-        if (curr_area > max_area) {
-            max_area = curr_area;
-            idx = pointIdx;
+    for (int idx : indices) {
+        int dist = abs(cross_product(a, b, vertices[idx]));
+        if (dist > max_dist) {
+            max_dist = dist;
+            farthest_idx = idx;
         }
     }
 
-    return idx;
+    return farthest_idx;
 }
 
+void find_hull(vector<Point>& vertices, vector<int>& hull, 
+              const vector<int>& points, const Point& a, const Point& b) {
+    if (points.empty()) return;
 
-void quickhull(vector<Point> &vertices, int n, int minIdx, int maxIdx, vector<int> &hull) {
-    if(minIdx == maxIdx)
-    return ;
-    vector<int> left, right;
+    vector<int> new_points;
+    int farthest_idx = find_farthest(vertices, points, a, b);
+    if (farthest_idx == -1) return;
 
-    int x1 = vertices[minIdx].x;
-    int y1 = vertices[minIdx].y;
-    int x2 = vertices[maxIdx].x;
-    int y2 = vertices[maxIdx].y;
+    const Point& c = vertices[farthest_idx];
+    hull.push_back(farthest_idx);
 
-    for (int i = 0; i < n; i++) {
-        if (i == minIdx || i == maxIdx) continue;
-        int val = (vertices[i].x - x1) * (y2 - y1) - (vertices[i].y - y1) * (x2 - x1);
-        if (val > 0) {
-            left.push_back(i);
-        } else if (val < 0) {
-            right.push_back(i);
+    // Points to the left of line a-c
+    vector<int> left_ac;
+    for (int idx : points) {
+        if (cross_product(a, c, vertices[idx]) > 0) {
+            left_ac.push_back(idx);
         }
     }
 
-    int idx_left = farthest_point(vertices, left, minIdx, maxIdx);
-    if (idx_left == -1) {
-        if (find(hull.begin(), hull.end(), minIdx) == hull.end()) {
-            hull.push_back(minIdx);
-            cout<<vertices[minIdx].x<<" "<<vertices[minIdx].y<<endl;
-            return;
+    // Points to the left of line c-b
+    vector<int> left_cb;
+    for (int idx : points) {
+        if (cross_product(c, b, vertices[idx]) > 0) {
+            left_cb.push_back(idx);
         }
-    } else {
-        quickhull(vertices, n, minIdx, idx_left, hull);
-        quickhull(vertices, n, idx_left, maxIdx, hull);
     }
 
-    int idx_right = farthest_point(vertices, right, minIdx, maxIdx);
-    if (idx_right == -1) {
-        if (find(hull.begin(), hull.end(), maxIdx) == hull.end()) {
-            hull.push_back(maxIdx);
-            cout<<vertices[maxIdx].x<<" "<<vertices[maxIdx].y<<endl;
-            return;
+    find_hull(vertices, hull, left_ac, a, c);
+    find_hull(vertices, hull, left_cb, c, b);
+}
+
+void quickhull(vector<Point>& vertices, vector<int>& hull) {
+    if (vertices.size() < 3) {
+        for (int i = 0; i < vertices.size(); i++) {
+            hull.push_back(i);
         }
-    } else {
-        quickhull(vertices, n, maxIdx, idx_right, hull);
-        quickhull(vertices, n, idx_right, minIdx, hull);
+        return;
     }
+
+    int min_x = 0, max_x = 0;
+    for (int i = 1; i < vertices.size(); i++) {
+        if (vertices[i].x < vertices[min_x].x) min_x = i;
+        if (vertices[i].x > vertices[max_x].x) max_x = i;
+    }
+
+    hull.push_back(min_x);
+    hull.push_back(max_x);
+
+    vector<int> left_points, right_points;
+    for (int i = 0; i < vertices.size(); i++) {
+        if (i == min_x || i == max_x) continue;
+
+        int cross = cross_product(vertices[min_x], vertices[max_x], vertices[i]);
+        if (cross > 0) {
+            left_points.push_back(i);
+        } else if (cross < 0) {
+            right_points.push_back(i);
+        }
+    }
+
+    find_hull(vertices, hull, left_points, vertices[min_x], vertices[max_x]);
+    find_hull(vertices, hull, right_points, vertices[max_x], vertices[min_x]);
 }
 
 int main() {
@@ -166,9 +172,9 @@ int main() {
     max_min(vertices, 0, n - 1, maximum, minimum, maxIdx, minIdx);
 
     vector<int> hull;
-    quickhull(vertices, n, minIdx, maxIdx, hull);
+    quickhull(vertices, hull);
 
-    cout << "Convex Hull Points:\n";
+    cout << "\nConvex Hull Points:\n";
     for (int i : hull) {
         cout << "(" << vertices[i].x << ", " << vertices[i].y << ")\n";
     }

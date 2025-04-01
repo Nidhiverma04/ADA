@@ -162,7 +162,6 @@ int main() {
     }
 
     ans = matrix_mult(arr, b, size);
-
     cout << "\nStrassen's Matrix Multiplication Result: \n";
     for (int i = 0; i < size; i++) {
         for (int j = 0; j < size; j++) {

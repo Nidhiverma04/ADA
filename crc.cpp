@@ -62,7 +62,6 @@ int main() {
     cout << "Enter the generator polynomial: ";
     string polynomial;
     cin >> polynomial;
-
     string key = findKey(polynomial);
 
     cout << "Enter the data: ";
@@ -75,9 +74,7 @@ int main() {
             deg = max(deg, polynomial[polynomial.find('^') + 1] - '0');
         }
     }
-
     string padded_data = data + string(deg, '0');
-
     cout << endl << "Appended zeroes: " << padded_data << endl;
 
     string remainder = divide(padded_data, key);
@@ -95,6 +92,4 @@ int main() {
     } else {
         cout << "\nCorrupted data received" << endl;
     }
-
-    return 0;
 }

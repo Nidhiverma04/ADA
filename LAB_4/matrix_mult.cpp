@@ -39,7 +39,7 @@ int main() {
     cin >> size;
 
     srand(time(0));
-
+    
     int** arr = new int*[size];
     int** b = new int*[size];
     int** ans = new int*[size];
@@ -91,3 +91,4 @@ int main() {
 
     return 0;
 }
+

@@ -53,7 +53,6 @@ float** knapsack(float** arr, int cap, int size) {
     }
     return prof;
 }
-
 int knapsack_solution(int size, float** arr, int cap, int sortIdx) {
     quickSort(arr, sortIdx, 0, size - 1);
     float** profit = knapsack(arr, cap, size);
@@ -87,3 +86,5 @@ int main() {
     delete[] arr;
     return 0;
 }
+
+

@@ -18,7 +18,7 @@ WORKING : 1. Start
           6. Print Cosine Similarity Value  
           7. Stop
         
-OUTPUT :        Input -                                                                           Output - Cosine Similarity value: 0.875
+OUTPUT :        Input -                                                                          Output - Cosine Similarity value: 0.875
                 file 1 : Machine learning is a subset of artificial intelligence.
                 file 2 : Machine learning, a branch of artificial intelligence.                                                  
                                               
@@ -95,6 +95,31 @@ OUTPUT :        Input - Enter size (m x n): 4 5                                 
 TIME COMPLEXITY : O(m log n), m = rows, n = cols
 SPACE COMPLEXITY : O(1)
 
+QUES 5 ->
+AIM : To calculate a^b (a raised to the power of b) using the Exponentiation by Squaring method. 
+WORKING :   1. Start
+            2. Input:
+            - Base ( a ) and exponent ( b ).
+
+               3. Handle Base Cases:  
+                  - If ( a = 1 ), return 1 (since ( 1^b = 1 )).  
+                  - If ( b = 0 ), return 1 (since any number raised to power 0 is 1).  
+               
+               4. Iterative Computation:  
+                  - Initialize `res = 1`.  
+                  - While ( b ) is greater than 0:  
+                  - If ( b ) is odd, multiply `res` by `a`.  
+                  - Update ( a = a times a ).  
+                  - Perform integer division ( b = b/2 ).  
+                  
+               5. Return the Result:  
+                  - The final value of `res` is ( a^b ).  
+
+OUTPUT :    Input - Enter a and b : 2 5                                                    Output - Power: 32
+
+TIME COMPLEXITY : O(log b) 
+SPACE COMPLEXITY : O(1)
+
 LAB-2(30 January 2025)
 ----------------------
 
@@ -158,16 +183,18 @@ QUES 3 ->
 AIM : To measure the execution time of Magic Square for varying array sizes and plot the complexity graph.  
 WORKING : 1. Start  
           2. Input:  
-             - The program generates Magic Squares of sizes \(3, 5, 7, ..., 25001\).  
-             - For each size, a Magic Square is created using a standard method (starting from the middle of the top row and filling numbers in a specific pattern).  
+             - The program generates Magic Squares of sizes (3, 5, 7, ..., 25001).  
+             - For each size, a Magic Square is created using a standard method (starting from the middle of the top row and 
+             filling numbers in a specific pattern).  
           3. Magic Square Algorithm:  
-             - Initialize a 2D array of size \(n \times n\) with zeros.  
-             - Start placing numbers from 1 to \(n^2\) in the square, following the rule:
+             - Initialize a 2D array of size (n times n) with zeros.  
+             - Start placing numbers from 1 to (n^2) in the square, following the rule:
                - Place the next number in the position above and to the left of the previous one.
                - If that position is already filled, place the number directly below the previous number.  
           4. Measure Time:  
              - Use `high_resolution_clock::now()` to measure the time taken for each Magic Square generation.  
-             - The time is recorded for 5 iterations per size, and the average time is calculated in microseconds using `duration_cast<microseconds>`.  
+             - The time is recorded for 5 iterations per size, and the average time is calculated in microseconds using 
+             `duration_cast<microseconds>`.  
           5. Store Results:  
              - The size of the Magic Square is written to `size.csv`.  
              - The average time taken for generating the Magic Square is written to `time.csv`.  
@@ -189,11 +216,13 @@ AIM : To measure the execution time of Quick Sort for varying array sizes and ou
 
 WORKING : 1. Start  
           2. Input:  
-             - The program generates arrays of sizes \(13, 26, 52, 104, ..., 90000\), where each array size is determined by the formula (n = n log(n)).  
-             - For each size, the array is initialized with elements from 0 to \(n-1\).  
+             - The program generates arrays of sizes (13, 26, 52, 104, ..., 90000), where each array size is determined 
+             by the formula (n = n log(n)).  
+             - For each size, the array is initialized with elements from 0 to (n-1).  
           3. Quick Sort Algorithm:  
              - The program executes Quick Sort 10 times for each array to ensure consistent timing.  
-             - The partitioning step picks the first element as the pivot, and elements are rearranged such that elements less than the pivot are on the left, and elements greater than the pivot are on the right.  
+             - The partitioning step picks the first element as the pivot, and elements are rearranged such that elements 
+             less than the pivot are on the left, and elements greater than the pivot are on the right.  
           4. Measure Time:  
              - Use `clock_t` to measure the time taken for each sorting operation.  
              - The time is recorded for 10 iterations, and the average time is calculated using `double(end - start) / CLOCKS_PER_SEC`.  
@@ -241,6 +270,69 @@ TIME COMPLEXITY : O(n²)
 SPACE COMPLEXITY : O(1)
 
 ![image](https://github.com/user-attachments/assets/ba7a5629-587c-4d14-9451-1df720492d43)
+
+
+QUES 6 ->  
+AIM : To implement and analyze the Merge Sort algorithm by measuring the time taken for sorting arrays of increasing sizes 
+and recording the results.
+WORKING :   1. Start  
+            2. Create two files, `time.csv` and `size.csv`, to store the time taken and array sizes.  
+            3. Loop over array sizes starting from 13 and increasing by a factor of `n * log(n) + 10`.  
+            4. For each size `n`:  
+               - Create an array `arr` of size `n` with elements from 0 to n-1.  
+               - Record the start time.  
+               - Run Merge Sort 100 times to get a stable average time. 
+                     1. Merge Function:  
+                        - Create two temporary arrays `L` and `R` to store the left and right halves.  
+                        - Merge these subarrays while maintaining the sorted order.  
+                        - Copy any remaining elements to the original array.  
+
+                     2. Merge Sort Function:  
+                        - Recursively split the array until subarrays have one element.  
+                        - Merge the subarrays back while sorting. 
+
+               - Record the end time.  
+               - Calculate the average time taken for sorting.  
+               - Save the average time in `time.csv` and the size `n` in `size.csv`.  
+            5. Display the array sizes being processed.  
+            6. If all sizes are processed, display "done at end".  
+            7. Stop    
+ 
+TIME COMPLEXITY : O(n log n )
+SPACE COMPLEXITY : O(n)
+
+![alt text](image.png)
+
+
+QUES 7 ->  
+AIM : To implement and analyze the Heap Sort algorithm by measuring the time taken for sorting arrays of increasing sizes.
+WORKING :   1. Start  
+            2. Create two files, "heap_time.csv" and "heap_size.csv", to store the time taken and array sizes, respectively.  
+            3. Loop over array sizes starting from 13 and increasing by a factor of `n * log(n)`.  
+            4. For each size n:  
+               - Create an array arr of size n with elements from 0 to n-1.  
+               - Record the start time.  
+               - Run Heap Sort 10 times to get a stable average time. 
+                  1. Heapify Function:  
+                     - Identify the largest of the root, left child, and right child.  
+                     - Swap if necessary and recursively apply to maintain the heap property.  
+
+                  2. Heap Sort Function:  
+                     - Build a max heap from the array.  
+                     - Repeatedly extract the maximum element, swap it with the end, reduce the heap size, and call heapify.  
+
+               - Record the end time.  
+               - Calculate the average time taken for sorting.  
+               - Save the average time in "heap_time.csv" and the size n in "heap_size.csv".  
+            5. Display the array sizes being processed.  
+            6. If all sizes are processed, display "done at end".  
+            7. Stop    
+
+
+TIME COMPLEXITY : O(n log n )
+SPACE COMPLEXITY : O(1)
+
+![alt text](image-1.png)
 
 
 LAB-3(6 February 2025)
@@ -326,9 +418,7 @@ WORKING : 1. Start
                - Profit-to-weight ratio  
           7. Stop  
           
-OUTPUT :  weight : 25  
-          profit : 38   
-          ratio : 39     
+OUTPUT :  weight : 25  profit : 38   ratio : 39     
 
 TIME COMPLEXITY : O(n log n)  
                     - Sorting (QuickSort): O(n log n)   
@@ -492,11 +582,8 @@ SPACE COMPLEXITY : O(n)
 LAB-5(27 February 2025)
 ----------------------
 QUES 1 ->  
-AIM : Write a program to implement the Activity Selection Problem using the Greedy Approach and measure the number of activities selected based on:  
-1. Start Time  
-2. End Time  
-3. Duration  
-
+AIM : Write a program to implement the Activity Selection Problem using the Greedy Approach and measure the number of activities 
+selected based on:  1. Start Time  2. End Time  3. Duration  
 WORKING : 1. Start  
           2. Input the number of activities and their start, end, and duration times.  
           3. Generate a 2D array `arr` of size `[3][size]`:  
@@ -514,7 +601,7 @@ WORKING : 1. Start
           6. Display the number of activities selected for each sorting criterion.  
           7. Stop   
 
-OUTPUT :  Size      Start     End       Duration
+OUTPUT :  Size      Start     End       Duration         The end time-based approach typically gives the optimal solution. 
           ----------------------------------------
           2         1         1         1
           4         1         2         2
@@ -532,8 +619,7 @@ OUTPUT :  Size      Start     End       Duration
           16384     2         10        10
           32768     2         10        10
           65536     2         10        10  
-
-The end time-based approach typically gives the optimal solution.  
+ 
 
 TIME COMPLEXITY : O(n log n)
 SPACE COMPLEXITY : O(n)  
@@ -579,7 +665,8 @@ TIME COMPLEXITY : O(n²)
 SPACE COMPLEXITY : O(n²)   
 
 QUES 3 ->  
-AIM : Write a program to implement Strassen's Matrix Multiplication algorithm to multiply two square matrices efficiently using the divide-and-conquer approach.
+AIM : Write a program to implement Strassen's Matrix Multiplication algorithm to multiply two square matrices 
+efficiently using the divide-and-conquer approach.
 WORKING : 1. Start
           2. Input the size of matrices `n`.  
           3. Generate two random square matrices `A` and `B` of size `n x n`.  
@@ -601,32 +688,56 @@ WORKING : 1. Start
              - `C10 = Q + S`  
              - `C11 = P + R - Q + U`  
           8. Merge the submatrices to form the final result matrix `C`.  
-          9. Display the result of Strassen's Matrix Multiplication and compare it with Standard Matrix Multiplication for verification.  
+          9. Display the result of Strassen's Matrix Multiplication and compare it with Standard Matrix Multiplication 
+          for verification.  
           10. Stop    
 
-OUTPUT :    Input - Enter size: 4                                                          Output - Strassen's Matrix Multiplication Result:
-                                                                                                    82 56 49 19
-                                                                                                    127 65 154 140
-                                                                                                    83 35 184 176 
-                                                                                                    94 64 47 16
-                                                                                                    
-                                                                                                    Standard Matrix Multiplication Result:
-                                                                                                    82 56 49 19
-                                                                                                    127 65 154 140
-                                                                                                    83 35 184 176 
-                                                                                                    94 64 47 16  
-                                                                                                    
+OUTPUT :    Input - Enter size: 4                                             Output - Strassen's Matrix Multiplication Result:
+                                                                                       82 56 49 19
+                                                                                       127 65 154 140
+                                                                                       83 35 184 176 
+                                                                                       94 64 47 16
+                                                                                       
+                                                                                       Standard Matrix Multiplication Result:
+                                                                                       82 56 49 19
+                                                                                       127 65 154 140
+                                                                                       83 35 184 176 
+                                                                                       94 64 47 16  
+                                                                                       
 TIME COMPLEXITY : O(n ^ log 7) => O(n ^ 2.81)
 
 SPACE COMPLEXITY : O(n²) 
-                    - Recursive stack space for partitioning: \(O(\log n)\)  
+                    - Recursive stack space for partitioning: (O(log n))  
                     - Space for intermediate matrices:  O(n²) 
+
+
+QUES 4 ->
+AIM : To find the median of an unsorted array in O(n) time. 
+WORKING :   1. Start  
+            2. If the array has only one element, return it as the median.  
+            3. If the array has an odd length, find the element at the `(n/2)` index using Quickselect.  
+            4. If the array has an even length, find the elements at `(n/2 - 1)` and `(n/2)` indices and calculate their average.  
+            5. Use the Quickselect function:  
+               - Choose a random pivot.  
+               - Partition the array such that elements less than the pivot are on the left and greater on the right.  
+               - Recursively search in the required half of the array.  
+            6. Stop  
+
+OUTPUT:    Input - Enter size : 8                                               Output - 97, 24, 27, 8, 99, 26, 8, 91
+                                                                                         Median: 26.5
+
+
+TIME COMPLEXITY : O(n)- best/ average 
+                  O(n²) - worst  
+
+SPACE COMPLEXITY : O(1)  
 
 
 LAB-6(20 March 2025)
 ----------------------
 QUES 1 ->  
-AIM : Write a program to implement Kruskal's Algorithm for finding the Minimum Spanning Tree (MST) of a connected, weighted, and undirected graph using the Union-Find method.
+AIM : Write a program to implement Kruskal's Algorithm for finding the Minimum Spanning Tree (MST) of a connected, weighted, and 
+undirected graph using the Union-Find method.
 WORKING : 1. Start
           2. Input the number of vertices `n` and edges `e`.  
           3. Create an edge list where each edge has a source, destination, and weight.  
@@ -687,3 +798,97 @@ OUTPUT :    Input - Enter number of vertices: 4                                 
 TIME COMPLEXITY : O(n²) 
 
 SPACE COMPLEXITY : O(n)
+
+LAB-7(27 March 2025)
+----------------------
+QUES 1 ->  
+AIM : Write a program to implement the All-Pairs Shortest Path Algorithm (Floyd-Warshall Algorithm) and compute the shortest paths between all pairs of vertices in a weighted graph.  
+WORKING :1. Start  
+         2. Input the number of vertices (`n`), number of edges (`edges`), and number of stages (`k`).  
+         3. Initialize the adjacency matrix `cost[][]`:  
+            - Set `cost[i][i] = 0` (distance from a node to itself is zero).  
+            - Set `cost[i][j] = ∞ (INT_MAX)` for all other pairs.  
+         4. Input edges (`source, destination, weight`) and update `cost[][]`.  
+         5. Apply Floyd-Warshall Algorithm:  
+            - Create a distance matrix `a[][]` initialized as `cost[][]`.  
+            - For each intermediate vertex `k`:  
+            - For each pair (i, j), update:  
+               a[i][j] = min(a[i][j], a[i][k] + a[k][j])
+               
+         6. Output the final shortest path matrix.  
+         7. Deallocate memory.  
+         8. Stop.  
+
+OUTPUT :    Input -  Enter number of vertices: 4                                     Output - Shortest path matrix:
+                     Enter number of edges: 4                                                  0     5     8     9  
+                     Enter number of stages: 3                                               INF     0     3     4 
+                     Enter edge (source, destination) and weight: 0 1 5                      INF   INF     0     1   
+                     Enter edge (source, destination) and weight: 1 2 3                      INF   INF   INF     0 
+                     Enter edge (source, destination) and weight: 2 3 1  
+                     Enter edge (source, destination) and weight: 0 3 10  
+
+TIME COMPLEXITY : O(n³) 
+
+SPACE COMPLEXITY : O(n²)
+
+QUES 3 ->
+AIM : Write a program to implement the Multistage Graph Shortest Path Algorithm using Forward Approach and determine the shortest path from source to destination.
+WORKING :   1. Start  
+            2. Input the number of vertices (`n`), number of edges (`edges`), and number of stages (`k`).  
+            3. Generate a cost adjacency matrix (`cost[n][n]`) initialized with:  
+               - `cost[i][j] = 0` for `i == j`  
+               - `cost[i][j] = ∞ (INT_MAX)` for all other edges  
+            4. Input `edges` and update `cost[i][j]` and store edge information in `edge[]`.  
+            5. Initialize an array `f_dist[n]` to store the shortest distances from each vertex to the destination.  
+            6. Start Backward Calculation from the last vertex (`n-1`):  
+               - Set `f_dist[n-1] = 0`  
+               - For each vertex `j` from `n-2` to `0`:  
+               - Find the next vertex (`r`) that gives the minimum total cost.  
+               - Update `f_dist[j] = cost[j][r] + f_dist[r]`  
+            7. Construct the Shortest Path from source (`0`) to destination (`n-1`).  
+            8. Display the shortest path and its cost.  
+            9. Stop.   
+
+OUTPUT :    Input -  Enter number of vertices: 5                            Output - Shortest Path: 0 --> 1 --> 3 --> 4    
+                     Enter number of edges: 6                                        Minimum Cost: 6
+                     Enter number of stages: 3  
+
+                     Enter edge (source, destination) and weight:  
+                     0 1 3  
+                     0 2 6  
+                     1 3 2  
+                     1 4 5  
+                     2 3 8  
+                     3 4 1  
+
+TIME COMPLEXITY : O(n²) 
+
+SPACE COMPLEXITY : O(n)
+
+ 
+QUES 5 ->
+AIM : Write a program to implement the Multistage Graph Problem and determine the number of stages required to reach the destination.
+WORKING :   1. Start  
+            2. Input the number of vertices (`n`) and the number of edges (`edges`).  
+            3. Initialize a cost adjacency matrix (`cost[n][n]`) with all elements set to `0`.  
+            4. Input `edges` and update `cost[i][j]` based on the given source, destination, and weight.  
+            5. Define the find_stage function to recursively find the number of stages required:  
+               - If `stage == n-1`, return the `count` (indicating the final stage).  
+               - For each vertex `i` from `0` to `n-1`, if there's a valid edge (`cost[stage][i] != 0`), recursively call `find_stage` with an incremented stage and count.  
+            6. Display the total number of stages required to reach from the source to the destination.  
+            7. Stop    
+
+OUTPUT :    Input -  Enter number of vertices: 5                                Output - No. of stages: 3 
+                     Enter number of edges: 6  
+
+                     Enter edge (source, destination) and weight:  
+                     0 1 3  
+                     0 2 6  
+                     1 3 2  
+                     1 4 5  
+                     2 3 8  
+                     3 4 1
+
+TIME COMPLEXITY : O(n²) 
+
+SPACE COMPLEXITY : O(1) 

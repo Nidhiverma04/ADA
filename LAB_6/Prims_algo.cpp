@@ -114,15 +114,6 @@ int main() {
     for (int i = 0; i < n - 1; i++) {
         cout << tree[i][0] << " - " << tree[i][1] << endl;
     }
-
-    for (int i = 0; i < n; i++)
-        delete[] cost[i];
-    delete[] cost;
-    delete[] near;
-
-    for (int i = 0; i < n - 1; i++)
-        delete[] tree[i];
-    delete[] tree;
-
-    return 0;
 }
+
+
