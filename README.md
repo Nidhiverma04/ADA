@@ -899,6 +899,9 @@ TIME COMPLEXITY : O(n³)
 
 SPACE COMPLEXITY : O(n)
 
+![image](https://github.com/user-attachments/assets/5370815d-d1af-4a9f-88c1-4a66a1420f07)
+
+![image](https://github.com/user-attachments/assets/a75935a2-353e-4919-8c58-d11b66da54b3)
 
 QUES 3 ->
 AIM : Write a program to implement the Multistage Graph Shortest Path Algorithm using Forward Approach and determine the shortest path from source to destination.
@@ -933,6 +936,8 @@ OUTPUT :    Input -  Enter number of vertices: 5                            Outp
 TIME COMPLEXITY : O(n²) 
 
 SPACE COMPLEXITY : O(n)
+
+![image](https://github.com/user-attachments/assets/e4d71671-e368-4303-9b52-8114c82843ec)
 
 ![image](https://github.com/user-attachments/assets/36e224e6-e34b-42dd-acd2-180a4a45207a)
 
@@ -969,8 +974,9 @@ OUTPUT :    Input - Items (Storage, Profit):                                    
 TIME COMPLEXITY : O(n * c) 
 
 SPACE COMPLEXITY : O(n * c)
- 
- 
+
+![image](https://github.com/user-attachments/assets/e88e647b-5332-483f-990b-f26160bd5fbb)
+
 QUES 5 ->
 AIM : Write a program to implement the Multistage Graph Problem and determine the number of stages required to reach the destination.
 WORKING :   1. Start  
