@@ -839,7 +839,8 @@ SPACE COMPLEXITY : O(n)
 LAB-7(27 March 2025)
 ----------------------
 QUES 1 ->  
-AIM : Write a program to implement the All-Pairs Shortest Path Algorithm (Floyd-Warshall Algorithm) and compute the shortest paths between all pairs of vertices in a weighted graph.  
+AIM : Write a program to implement the All-Pairs Shortest Path Algorithm (Floyd-Warshall Algorithm) and compute the shortest paths 
+between all pairs of vertices in a weighted graph.  
 WORKING :1. Start  
          2. Input the number of vertices (`n`), number of edges (`edges`), and number of stages (`k`).  
          3. Initialize the adjacency matrix `cost[][]`:  
@@ -869,7 +870,8 @@ TIME COMPLEXITY : O(n³)
 SPACE COMPLEXITY : O(n²)
 
 QUES 2 ->
-AIM : Write a program to implement the Multistage Graph Shortest Path Algorithm using Backward Approach and determine the shortest path from source to destination.
+AIM : Write a program to implement the Multistage Graph Shortest Path Algorithm using Backward Approach and determine 
+the shortest path from source to destination.
 WORKING :   1. Start  
             2. Input the number of vertices (`n`), number of edges (`edges`), and number of stages (`k`).  
             3. Generate the adjacency matrix (`cost[n][n]`):  
@@ -901,7 +903,8 @@ SPACE COMPLEXITY : O(n)
 
 
 QUES 3 ->
-AIM : Write a program to implement the Multistage Graph Shortest Path Algorithm using Forward Approach and determine the shortest path from source to destination.
+AIM : Write a program to implement the Multistage Graph Shortest Path Algorithm using Forward Approach and 
+determine the shortest path from source to destination.
 WORKING :   1. Start  
             2. Input the number of vertices (`n`), number of edges (`edges`), and number of stages (`k`).  
             3. Generate a cost adjacency matrix (`cost[n][n]`) initialized with:  
@@ -937,7 +940,8 @@ SPACE COMPLEXITY : O(n)
 ![image](https://github.com/user-attachments/assets/36e224e6-e34b-42dd-acd2-180a4a45207a)
 
 QUES 4 ->
-AIM : Write a program to determine the maximum profit that can be obtained by selecting items within a given capacity constraint using the 0/1 Knapsack algorithm.
+AIM : Write a program to determine the maximum profit that can be obtained by selecting items within a given 
+capacity constraint using the 0/1 Knapsack algorithm.
 WORKING :   1. Start  
             2. Generate Random Inputs:  
                - Set knapsack capacity (`c`) as a random number between 10 and 19.  
@@ -979,7 +983,8 @@ WORKING :   1. Start
             4. Input `edges` and update `cost[i][j]` based on the given source, destination, and weight.  
             5. Define the find_stage function to recursively find the number of stages required:  
                - If `stage == n-1`, return the `count` (indicating the final stage).  
-               - For each vertex `i` from `0` to `n-1`, if there's a valid edge (`cost[stage][i] != 0`), recursively call `find_stage` with an incremented stage and count.  
+               - For each vertex `i` from `0` to `n-1`, if there's a valid edge (`cost[stage][i] != 0`), recursively 
+               call `find_stage` with an incremented stage and count.  
             6. Display the total number of stages required to reach from the source to the destination.  
             7. Stop    
 

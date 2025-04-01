@@ -2,7 +2,6 @@
 #include <climits>
 #include<iomanip>
 using namespace std;
-
 struct edgeInfo {
     int s;
     int d;

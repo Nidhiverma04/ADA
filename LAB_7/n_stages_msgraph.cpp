@@ -3,8 +3,7 @@
 using namespace std;
 
 void generate_vertices(int** cost, int n, int edges) {
-    for (int i = 0; i < n; i++)
-        cost[i] = new int[n];
+    for (int i = 0; i < n; i++)   cost[i] = new int[n];
 
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < n; j++) {
@@ -16,7 +15,6 @@ void generate_vertices(int** cost, int n, int edges) {
         int i, j, w;
         cout << "Enter edge (source, destination) and weight: ";
         cin >> i >> j >> w;
-
         if (i >= 0 && i < n && j >= 0 && j < n && w >= 0) {
             cost[i][j] = w; 
         } else {
@@ -27,16 +25,13 @@ void generate_vertices(int** cost, int n, int edges) {
 }
 
 int find_stage(int** cost, int n, int stage, int count){
-    if(stage == n-1){
-        return count;
-    }
+    if(stage == n-1)  return count;
 
     for(int i=0;i<n;i++){
         if(cost[stage][i] != 0){
             return find_stage(cost, n, stage+1, count+1);
         }
     }
-
     return count;
 }
 
