@@ -937,9 +937,7 @@ TIME COMPLEXITY : O(n²)
 
 SPACE COMPLEXITY : O(n)
 
-![image](https://github.com/user-attachments/assets/a4d6f0b3-f530-4bfe-bc71-f115186b3f98)
 
-![image](https://github.com/user-attachments/assets/a8d1e103-10cd-4801-993e-cde89f77e032)
 
 QUES 4 ->
 AIM : Write a program to determine the maximum profit that can be obtained by selecting items within a given capacity constraint using the 0/1 Knapsack algorithm.
