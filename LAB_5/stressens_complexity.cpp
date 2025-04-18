@@ -9,6 +9,14 @@
 using namespace std;
 using namespace std::chrono;
 
+// Helper function to delete a 2D array
+void freeMatrix(int** matrix, int n) {
+    for(int i = 0; i < n; i++) {
+        delete[] matrix[i];
+    }
+    delete[] matrix;
+}
+
 int** add(int** a, int** b, int n){
     int** ans = new int*[n];
     for(int i=0;i<n;i++){
@@ -43,8 +51,6 @@ int** conventional_mult(int** a, int** b , int n){
     int** ans = new int*[n];
     for(int i=0;i<n;i++){
         ans[i] = new int[n];
-    }
-    for(int i=0;i<n;i++){
         for(int j=0;j<n;j++){
             ans[i][j] = 0;
         }
@@ -62,81 +68,130 @@ int** conventional_mult(int** a, int** b , int n){
 }
 
 int** matrix_mult(int** a, int** b, int n) {
-
     if(n<=2){
         return conventional_mult(a, b, n);
     }
 
-    int** a00 = new int*[n/2];
-    int** a01 = new int*[n/2];
-    int** a10 = new int*[n/2];
-    int** a11 = new int*[n/2];
-    int** b00 = new int*[n/2];
-    int** b01 = new int*[n/2];
-    int** b10 = new int*[n/2];
-    int** b11 = new int*[n/2];
+    int half = n/2;
     
-    for(int i=0;i<n/2;i++){
-        a00[i] = new int[n/2];
-        a01[i] = new int[n/2];
-        a10[i] = new int[n/2];
-        a11[i] = new int[n/2];
-        b00[i] = new int[n/2];
-        b01[i] = new int[n/2];
-        b10[i] = new int[n/2];
-        b11[i] = new int[n/2];
-    }
-    for(int i =0;i<n/2;i++){
-        for(int j=0;j<n/2;j++){
+    // Allocate submatrices
+    int** a00 = new int*[half];
+    int** a01 = new int*[half];
+    int** a10 = new int*[half];
+    int** a11 = new int*[half];
+    int** b00 = new int*[half];
+    int** b01 = new int*[half];
+    int** b10 = new int*[half];
+    int** b11 = new int*[half];
+    
+    for(int i=0;i<half;i++){
+        a00[i] = new int[half];
+        a01[i] = new int[half];
+        a10[i] = new int[half];
+        a11[i] = new int[half];
+        b00[i] = new int[half];
+        b01[i] = new int[half];
+        b10[i] = new int[half];
+        b11[i] = new int[half];
+        
+        for(int j=0;j<half;j++){
             a00[i][j] = a[i][j];
-            a01[i][j] = a[i][j+ n/2];
-            a10[i][j] = a[i+ n/2][j];
-            a11[i][j] = a[i+n/2][j+n/2];
+            a01[i][j] = a[i][j+half];
+            a10[i][j] = a[i+half][j];
+            a11[i][j] = a[i+half][j+half];
+            
             b00[i][j] = b[i][j];
-            b01[i][j] = b[i][j+ n/2];
-            b10[i][j] = b[i+ n/2][j];
-            b11[i][j] = b[i+n/2][j+n/2];
+            b01[i][j] = b[i][j+half];
+            b10[i][j] = b[i+half][j];
+            b11[i][j] = b[i+half][j+half];
         }
     }
 
+    // Calculate intermediate matrices
+    int** a00_a11 = add(a00, a11, half);
+    int** b00_b11 = add(b00, b11, half);
+    int** a10_a11 = add(a10, a11, half);
+    int** b01_b11 = subt(b01, b11, half);
+    int** b10_b00 = subt(b10, b00, half);
+    int** a00_a01 = add(a00, a01, half);
+    int** a10_a00 = subt(a10, a00, half);
+    int** b00_b01 = add(b00, b01, half);
+    int** a01_a11 = subt(a01, a11, half);
+    int** b10_b11 = add(b10, b11, half);
 
-    int** P = matrix_mult( add(a00, a11, n/2) , add(b00, b11, n/2), n/2);
-    int** Q = matrix_mult( add(a10, a11, n/2) , b00, n/2);
-    int** R = matrix_mult( a00 , subt(b01, b11, n/2), n/2);
-    int** S = matrix_mult( a11 , subt(b10, b00, n/2), n/2);
-    int** T = matrix_mult( add(a00, a01, n/2) , b11, n/2);
-    int** U = matrix_mult( subt(a10, a00, n/2) , add(b00, b01, n/2), n/2);
-    int** V = matrix_mult( subt(a01, a11, n/2) , add(b10, b11, n/2), n/2);
+    int** P = matrix_mult(a00_a11, b00_b11, half);
+    int** Q = matrix_mult(a10_a11, b00, half);
+    int** R = matrix_mult(a00, b01_b11, half);
+    int** S = matrix_mult(a11, b10_b00, half);
+    int** T = matrix_mult(a00_a01, b11, half);
+    int** U = matrix_mult(a10_a00, b00_b01, half);
+    int** V = matrix_mult(a01_a11, b10_b11, half);
 
-    int** c00 = new int*[n/2];
-    int** c01 = new int*[n/2];
-    int** c10 = new int*[n/2];
-    int** c11 = new int*[n/2];
-    for(int i=0;i<n/2;i++){
-        c00[i] = new int[n/2];
-        c01[i] = new int[n/2];
-        c10[i] = new int[n/2];
-        c11[i] = new int[n/2];
-    }
+    // Free intermediate matrices
+    freeMatrix(a00_a11, half);
+    freeMatrix(b00_b11, half);
+    freeMatrix(a10_a11, half);
+    freeMatrix(b01_b11, half);
+    freeMatrix(b10_b00, half);
+    freeMatrix(a00_a01, half);
+    freeMatrix(a10_a00, half);
+    freeMatrix(b00_b01, half);
+    freeMatrix(a01_a11, half);
+    freeMatrix(b10_b11, half);
 
-    c00 = add(add(P, S, n/2), subt(V, T, n/2), n/2); 
-    c01 = add(R, T, n/2);
-    c10 = add(Q, S, n/2);
-    c11 = add(add(P, R, n/2) , subt(U, Q, n/2), n/2);
+    // Calculate result submatrices
+    int** temp1 = add(P, S, half);
+    int** temp2 = subt(V, T, half);
+    int** c00 = add(temp1, temp2, half);
+    int** c01 = add(R, T, half);
+    int** c10 = add(Q, S, half);
+    int** temp3 = add(P, R, half);
+    int** temp4 = subt(U, Q, half);
+    int** c11 = add(temp3, temp4, half);
 
+    // Free temporary matrices
+    freeMatrix(temp1, half);
+    freeMatrix(temp2, half);
+    freeMatrix(temp3, half);
+    freeMatrix(temp4, half);
+    freeMatrix(P, half);
+    freeMatrix(Q, half);
+    freeMatrix(R, half);
+    freeMatrix(S, half);
+    freeMatrix(T, half);
+    freeMatrix(U, half);
+    freeMatrix(V, half);
+
+    // Free input submatrices
+    freeMatrix(a00, half);
+    freeMatrix(a01, half);
+    freeMatrix(a10, half);
+    freeMatrix(a11, half);
+    freeMatrix(b00, half);
+    freeMatrix(b01, half);
+    freeMatrix(b10, half);
+    freeMatrix(b11, half);
+
+    // Combine results
     int** c = new int*[n];
     for(int i=0;i<n;i++){
         c[i] = new int[n];
     }
 
-    for(int i=0;i<n/2;i++){
-        for(int j=0;j<n/2;j++){
+    for(int i=0;i<half;i++){
+        for(int j=0;j<half;j++){
             c[i][j] = c00[i][j];
-            c[i][j+ n/2] = c01[i][j];
-            c[i+ n/2][j] = c10[i][j];
-            c[i+ n/2][j+ n/2] = c11[i][j];
+            c[i][j+half] = c01[i][j];
+            c[i+half][j] = c10[i][j];
+            c[i+half][j+half] = c11[i][j];
         }
     }
+
+    // Free result submatrices
+    freeMatrix(c00, half);
+    freeMatrix(c01, half);
+    freeMatrix(c10, half);
+    freeMatrix(c11, half);
 
     return c;
 }
@@ -146,13 +201,12 @@ int main() {
     ofstream file, f;
     file.open("size.csv");
     f.open("time.csv");
-    for(int i = 4; i<=25000; i= i*2){
-        int size =  i;
+    for(int i = 16; i<=2000; i= i*2){
+        int size = i;
 
         int** arr = new int*[size];
         int** b = new int*[size];
         int** ans = new int*[size];
-
 
         for (int i = 0; i < size; i++) {
             arr[i] = new int[size];
@@ -168,21 +222,27 @@ int main() {
             }
         }
        
-        auto start = std::chrono::high_resolution_clock::now();
-        for(int k = 0;k<10;k++){
-            ans = matrix_mult(arr, b, size);
+        auto start = high_resolution_clock::now();
+        for(int k = 0; k < 10; k++){
+            int** temp = matrix_mult(arr, b, size);
+            if(k > 0) {  // Don't free the first result (we want to keep the last one)
+                freeMatrix(ans, size);
+            }
+            ans = temp;
         }
-        auto end = std::chrono::high_resolution_clock::now();
-        double time_taken = std::chrono::duration<double>(end - start).count();
+        auto end = high_resolution_clock::now();
+        double time_taken = duration<double>(end - start).count();
 
-        file << i <<endl;
-        f <<time_taken/10<<endl; 
+        file << i << endl;
+        f << time_taken/10 << endl; 
     
-        for (int i = 0; i < 3; i++) delete[] arr[i];
-        delete[] arr;
+        // Free all memory
+        freeMatrix(arr, size);
+        freeMatrix(b, size);
+        freeMatrix(ans, size);
     }
     f.close();
     file.close();
-    cout<<"done";
+    cout << "done";
     return 0;
 }

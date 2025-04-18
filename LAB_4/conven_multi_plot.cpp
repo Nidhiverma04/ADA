@@ -57,9 +57,9 @@ void matrix_mult(int** a, int** b, int sr1, int er1, int sc1, int ec1, int sr2, 
 int main() {
     srand(time(0));
     ofstream file, f;
-    file.open("size.csv");
-    f.open("time.csv");
-    for(int i = 2; i<=25000; i= i*2){
+    file.open("conven_size.csv");
+    f.open("conven__time.csv");
+    for(int i = 16; i<=2000; i= i*2){
         int size =  i;
 
         int** arr = new int*[size];

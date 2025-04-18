@@ -14,7 +14,7 @@ void generate_random_graph(int** cost, int n, int edge_count) {
     mt19937 gen(rd());
     uniform_int_distribution<> weight_dist(1, 100);
     
-    // Initialize cost matrix
+
     for (int i = 0; i < n; i++) {
         cost[i] = new int[n];
         for (int j = 0; j < n; j++) {
@@ -22,12 +22,11 @@ void generate_random_graph(int** cost, int n, int edge_count) {
         }
     }
 
-    // Generate a connected graph (minimum spanning tree first)
     vector<int> vertices(n);
     iota(vertices.begin(), vertices.end(), 0);
     shuffle(vertices.begin(), vertices.end(), gen);
 
-    // Create spanning tree edges
+   
     for (int i = 1; i < n; i++) {
         int j = uniform_int_distribution<>(0, i-1)(gen);
         int w = weight_dist(gen);
@@ -35,7 +34,6 @@ void generate_random_graph(int** cost, int n, int edge_count) {
         cost[vertices[j]][vertices[i]] = w;
     }
 
-    // Add remaining random edges
     int edges_added = n-1;
     while (edges_added < edge_count) {
         int u = uniform_int_distribution<>(0, n-1)(gen);
@@ -56,7 +54,7 @@ int** prims(int** cost, int n) {
         t[i] = new int[2];
     }
 
-    // Initialize near array
+   
     int minCost = INT_MAX;
     int k, l;
     for (int i = 0; i < n; i++) {
@@ -74,15 +72,15 @@ int** prims(int** cost, int n) {
     t[0][1] = l;
     int totalCost = minCost;
 
-    // Initialize near array
+    
     for (int i = 0; i < n; i++) {
         near[i] = (cost[i][k] < cost[i][l]) ? k : l;
     }
     near[k] = near[l] = -1;
 
-    // Find remaining n-2 edges
+    
     for (int i = 1; i < n-1; i++) {
-        // Find minimum cost edge
+       
         int minEdge = INT_MAX;
         int u = -1;
         for (int j = 0; j < n; j++) {
@@ -92,13 +90,13 @@ int** prims(int** cost, int n) {
             }
         }
 
-        // Add edge to MST
+        
         t[i][0] = u;
         t[i][1] = near[u];
         totalCost += minEdge;
         near[u] = -1;
 
-        // Update near array
+        
         for (int v = 0; v < n; v++) {
             if (near[v] != -1 && cost[v][u] < cost[v][near[v]]) {
                 near[v] = u;
