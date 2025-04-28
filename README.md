@@ -1015,6 +1015,201 @@ SPACE COMPLEXITY : O(1)
 ![image](https://github.com/user-attachments/assets/48275cf2-c4e8-49a0-a725-823eb2064f9c)
 
 
-QUES 6 ->
-AIM : Write a program to implement the Multistage Graph Problem and determine the number of stages required to reach the destination.
-WORKING : 
+LAB-8(3 April 2025)
+----------------------
+QUES 1 ->  
+AIM : Write a program to implement the Matrix Chain Multiplication (MCM) algorithm and determine the minimum number of scalar multiplications 
+required to multiply a chain of matrices. 
+WORKING :1. Start  
+         2. Input the number of matrices `n`.  
+         3. Input the dimensions array `p` of length `n + 1` where matrix `Ai` has dimensions `p[i-1] x p[i]`.  
+         4. Initialize two 2D arrays:  
+            - `m[i][j]`: Minimum number of scalar multiplications needed to multiply matrices from `Ai` to `Aj`.  
+            - `s[i][j]`: Stores the index `k` at which the optimal split occurs.  
+         5. Set `m[i][i] = 0` since multiplying one matrix needs no operations.  
+         6. Loop through chain lengths from 2 to `n`, and calculate minimum cost for every subproblem `(i,j)`
+            using the recurrence:  
+            m[i][j] = min (m[i][k] + m[k+1][j] + p[i-1] * p[k] * p[j])
+            Update `s[i][j]` with the value of `k` that gives the minimum cost.  
+         7. Use the `print` function to output the optimal parenthesization using values in `s[i][j]`.  
+         8. Display the minimum number of scalar multiplications and the optimal way of parenthesizing the matrices.  
+         9. Free the dynamically allocated memory.  
+         10. Stop.
+
+OUTPUT:    Input -  Enter number of matrices: 4                            Output - Minimum number of scalar multiplications: 30000  
+                    Enter dimensions (length 5): 10 20 30 40 30                     Optimal Parenthesization: ( ( A1 A2 ) ( A3 A4 ) )
+
+TIME COMPLEXITY: O(n³) 
+SPACE COMPLEXITY: O(n²) – For storing the DP table `m` and the split table `s`.
+
+QUES 2 ->
+AIM: Write a program to implement the 0/1 Knapsack Problem using state-space dynamic programming and determine the 
+maximum profit achievable under a storage capacity constraint.
+WORKING:    1. Start  
+            2. Input the number of items `n`.  
+            3. Randomly generate the knapsack capacity `c` (between 10 and 19).  
+            4. Call `generate_requests(c, n)` to randomly generate:
+               - Profits (`[0, 99]`)
+               - Storage requirements (`[1, 10]`)
+               - Store in a 2D array `det[n][2]`.  
+               - Print the generated items and knapsack capacity.
+
+            5. Use an array of `sets` (`s0`) to represent different states (profit, weight) at each stage of item selection.  
+            6. Start with the initial state `s0[0] = {(0, 0)}` – i.e., zero profit and weight.  
+            7. For each item `i`, iterate over all states in `s0[i-1]`:
+               - If adding item `i-1` does not exceed capacity, add a new state in `s1[i-1]` with updated profit and weight.
+            8. Merge and purge dominated states (non-optimal ones) using `mergepurge()`:
+               - Removes states where another exists with higher profit and equal/lower weight.
+
+            9. After processing all items, find the state with the maximum profit in `s0[n]`.  
+            10. Use `traceback()` to reconstruct which items were selected:
+               - Backtrack from the final state to check if removing the item leads to a state in the previous set.
+               - If not, the item was included.
+
+            11. Output:
+               - The maximum profit and its corresponding weight.
+               - The list of selected items (storage, profit).
+
+            12. Free all dynamically allocated memory.  
+            13. Stop.
+
+OUTPUT:    Input - Enter n: 4                                            Output - Items (Storage, Profit):
+                                                                                 (60, 4)
+                                                                                 (30, 3)
+                                                                                 (90, 9)
+                                                                                 (70, 5)
+                                                                                 Knapsack Capacity: 15
+
+                                                                                 Max profit : 160 wt : 12
+
+                                                                                 Items taken (Storage, Profit):
+                                                                                 (90, 9)
+                                                                                 (70, 5)
+
+TIME COMPLEXITY:  
+SPACE COMPLEXITY: O(n * P) due to storing multiple state combinations of profit and weight in sets.
+
+QUES 3 ->
+AIM: Write a program to implement the Traveling Salesman Problem (TSP) using Bitmask Dynamic Programming and determine 
+the minimum cost tour visiting all cities exactly once and returning to the starting city.
+WORKING: 1. Start  
+         2. Input:
+            - Number of cities (`n`)
+            - Number of edges (`edges`)
+         3. Initialize a cost adjacency matrix `cost[n][n]`:
+            - Set `cost[i][j] = 0` if `i == j`
+            - Set all other costs to `INF` (infinite)
+         4. Input `edges` with format:  
+            `(source, destination, weight)`  
+            - Validate entries: cities within range, weight ≥ 0
+            - For valid input, update `cost[i][j]` and `cost[j][i]` (undirected)
+
+         5. Initialize two 2D arrays:
+            - `dp[n][2^n]` to store minimum cost
+            - `path[n][2^n]` to store path for reconstruction  
+            - Fill both with `-1`
+
+         6. Use recursive function `tsp(pos, visited_mask)`:
+            - If all cities are visited → return cost to return to city `0`
+            - If already computed → return `dp[pos][visited_mask]`
+            - Else, try going to all unvisited cities:
+            - Recursively compute total cost
+            - Track the minimum cost and corresponding city
+            - Save results in `dp` and `path` arrays
+
+         7. From `main()`, call `tsp(0, 1)` (start at city 0, with only city 0 visited)
+
+         8. If `minCost == INF`, report no valid tour
+         9. Otherwise:
+            - Display minimum cost
+            - Use `printPath()` to reconstruct and print the optimal tour using the `path` array
+
+         10. Free all dynamically allocated memory  
+         11. Stop
+ 
+OUTPUT:   Input - Enter number of cities: 4                                  Output - Minimum cost of travelling: 80
+                  Enter number of edges: 6                                            Optimal Path: 0 --> 1 --> 3 --> 2 --> 0
+                  Enter edges (source, destination, weight): 
+                  0 1 10
+                  0 2 15
+                  0 3 20
+                  1 2 35
+                  1 3 25
+                  2 3 30
+
+TIME COMPLEXITY: O( n² . 2ⁿ)
+SPACE COMPLEXITY:O( n . 2ⁿ)
+
+LAB-9(17 April 2025)
+----------------------
+QUES 1 ->  
+AIM: Write a program to check if a given graph is m-colorable using a greedy approach. Assign colors to vertices such that no two adjacent vertices share the same color, using at most `m` colors.
+WORKING: 1. Start
+         2. Input:
+            - Number of vertices (`n`)
+            - Number of edges (`edges`)
+            - Number of colors allowed (`m`)
+         3. Allocate memory:
+            - 2D array `cost[n][n]` to represent adjacency matrix
+            - Array `colour[n]` to store assigned colors
+         4. Initialize `cost[i][j]`:
+            - Set `0` if `i == j`
+            - Set to `∞` (`INT_MAX`) if not directly connected
+         5. Input `edges`:
+            - For each valid edge `(i, j)`, set `cost[i][j] = cost[j][i] = 1`
+         6. Initialize all vertex colors to `0`
+         7. Use the recursive function `m_colourable(j, curr_col)`:
+            - If `curr_col == m` or all vertices are processed (`j == n`) → return
+            - For each vertex `i`, if `i` is adjacent to `j` and uncolored → assign `curr_col`
+            - If not adjacent and uncolored → inherit `colour[j]`
+            - Recurse to the next vertex with incremented color
+         8. Output the coloring result:For each vertex `i`, print assigned color `colour[i]`  
+         9. Stop.
+
+OUTPUT:   Input - Enter number of vertices: 4                                 Output - Solution: 
+                  Enter number of edges: 4                                             0 - 1
+                  Enter number of colour: 3                                            1 - 2
+                  Enter edge (source, destination):                                    2 - 3
+                  0 1                                                                  3 - 1
+                  1 2  
+                  2 3  
+                  3 0
+
+TIME COMPLEXITY: O(m ^ n)
+SPACE COMPLEXITY: O(n²)
+
+QUES 2 ->
+AIM: Write a program to solve the N-Queens Problem using backtracking. Place `n` queens on an `n×n` chessboard such that no two queens attack each other.
+WORKING: 1. Start
+         2. Input the number of queens (`n`) — same as the size of the board
+         3. Create an array `x[n]` where `x[i]` represents the column position of the queen in row `i`
+         4. Call the recursive function `NQueens(0, n, x)` to begin placing queens from row 0
+         5. Inside the `NQueens(k, n, x)` function:
+            - Try placing a queen in each column `i` of row `k`
+            - Use `place(k, i, x)` to check if the current position is safe:
+            - No other queen should be in column `i`
+            - No other queen should be on the same diagonal
+            - If valid, assign `x[k] = i`
+            - If it's the last row (`k == n - 1`), print the board using `print(x, n)`
+            - Else, recurse for the next row
+         6. `print(x, n)` displays the board with:
+            - `1` where a queen is placed
+            - `0` otherwise
+         7. Free memory allocated for `x` and end the program
+         8. Stop.
+
+OUTPUT:    Input - Enter the number of queens: 4                          Output - 
+                                                                           Solution : 
+                                                                           0 1 0 0 
+                                                                           0 0 0 1 
+                                                                           1 0 0 0 
+                                                                           0 0 1 0 
+
+                                                                           Solution : 
+                                                                           0 0 1 0 
+                                                                           1 0 0 0 
+                                                                           0 0 0 1 
+                                                                           0 1 0 0 
+
+TIME COMPLEXITY: O(n!)
+SPACE COMPLEXITY: O(n)

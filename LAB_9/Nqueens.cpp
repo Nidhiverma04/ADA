@@ -29,7 +29,6 @@ void print(int* x, int n){
 void NQueens(int k, int n, int* x){
     for(int i=0;i<n;i++){
         if(place(k, i, x)){
-
             x[k] = i;
             if(k == n - 1){
                 print(x, n);

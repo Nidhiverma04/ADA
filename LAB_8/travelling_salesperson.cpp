@@ -66,7 +66,6 @@ void printPath(int n, int** path) {
 
     cout << " --> 0\n";  
 }
-
 int main() {
     int n, edges;
     cout << "Enter number of cities: ";
@@ -78,9 +77,7 @@ int main() {
     for (int i = 0; i < n; i++) {
         cost[i] = new int[n];
     }
-
     generate_vertices(cost, n, edges);
-
     int** dp = new int*[n];
     int** path = new int*[n];
 
@@ -92,7 +89,6 @@ int main() {
             path[i][j] = -1;
         }
     }
-
     int minCost = tsp(0, 1, n, cost, dp, path);
 
     if (minCost == INF) {
@@ -101,15 +97,4 @@ int main() {
         cout << "Minimum cost of travelling: " << minCost << endl;
         printPath(n, path);
     }
-
-    for (int i = 0; i < n; i++) {
-        delete[] cost[i];
-        delete[] dp[i];
-        delete[] path[i];
-    }
-    delete[] cost;
-    delete[] dp;
-    delete[] path;
-
-    return 0;
 }

@@ -20,9 +20,7 @@ int** generate_requests(int c, int n){
     for (int i = 0; i < n; i++) {
         cout << "(" << det[i][0] << ", " << det[i][1] << ")\n";
     }
-
     cout << "Knapsack Capacity: " << c << "\n";
-
     return det;
 }
 
@@ -31,25 +29,20 @@ set<pair<int, int>> mergepurge(set<pair<int, int>> s0, set<pair<int, int>> s1){
     for (auto &p : s1) {
         s.insert({p.first, p.second});
     }
-
     vector<pair<int, int>> to_remove;
-   
     for (auto it1 = s.begin(); it1 != s.end(); ++it1) {
         for (auto it2 = s.begin(); it2 != s.end(); ++it2) {
             if (it1 == it2) continue;
-
             if (it2->first >= it1->first && it2->second < it1->second) {
                 to_remove.push_back(*it1);
             }
         }
     }
-    
     for (const auto& p : to_remove) {
         s.erase(p);
     }
     return s;
 }
-
 void traceback(int prof, int wt, set<pair<int, int>>s0[], int n, int** det){
     int x[n]={0};
     for(int i=n-1;i>=0;i--){
