@@ -1042,6 +1042,9 @@ OUTPUT:    Input -  Enter number of matrices: 4                            Outpu
 TIME COMPLEXITY: O(n³) 
 SPACE COMPLEXITY: O(n²) – For storing the DP table `m` and the split table `s`.
 
+![image](https://github.com/user-attachments/assets/97f75adb-b55e-49d6-89ac-3c6972af1c75)
+
+
 QUES 2 ->
 AIM: Write a program to implement the 0/1 Knapsack Problem using state-space dynamic programming and determine the 
 maximum profit achievable under a storage capacity constraint.
@@ -1087,7 +1090,10 @@ OUTPUT:    Input - Enter n: 4                                            Output 
                                                                                  (70, 5)
 
 TIME COMPLEXITY:  
-SPACE COMPLEXITY: O(n  P) due to storing multiple state combinations of profit and weight in sets.
+SPACE COMPLEXITY: O(n*P) due to storing multiple state combinations of profit and weight in sets.
+
+![image](https://github.com/user-attachments/assets/66c843c8-dded-4f29-b0f1-b55e26f8377c)
+
 
 QUES 3 ->
 AIM: Write a program to implement the Traveling Salesman Problem (TSP) using Bitmask Dynamic Programming and determine 
@@ -1140,6 +1146,9 @@ OUTPUT:   Input - Enter number of cities: 4                                  Out
 TIME COMPLEXITY: O( n² . 2ⁿ)
 SPACE COMPLEXITY:O( n . 2ⁿ)
 
+![image](https://github.com/user-attachments/assets/41587991-0d8e-4b27-9741-11936ba1defe)
+
+
 LAB-9(17 April 2025)
 ----------------------
 QUES 1 ->  
@@ -1177,6 +1186,8 @@ OUTPUT:   Input - Enter number of vertices: 4                                 Ou
 
 TIME COMPLEXITY: O(m ^ n)
 SPACE COMPLEXITY: O(n²)
+![image](https://github.com/user-attachments/assets/dac83ab7-c554-4715-b0c4-54d3101b3ba6)
+
 
 QUES 2 ->
 AIM: Write a program to solve the N-Queens Problem using backtracking. Place `n` queens on an `n×n` chessboard such that no two queens attack each other.
@@ -1214,6 +1225,8 @@ OUTPUT:    Input - Enter the number of queens: 4                          Output
 TIME COMPLEXITY: O(n!)
 SPACE COMPLEXITY: O(n)
 
+![image](https://github.com/user-attachments/assets/8017608e-ba56-49c2-ac89-b63ca40deb0d)
+
 
 LAB-10(24 April 2025)
 ----------------------
@@ -1245,6 +1258,9 @@ OUTPUT:   Input - Enter the number of cities: `6`                   Output -  So
 TIME COMPLEXITY: O(n!)
 SPACE COMPLEXITY: O(n)
 
+![image](https://github.com/user-attachments/assets/c3067f01-9624-42f5-827e-3ba00352aaac)
+
+
 QUES 2 ->
 AIM: Write a program to find the Longest Common Subsequence (LCS) of two given strings. The LCS is the longest subsequence that appears in both strings, not necessarily consecutively.
 WORKING: 1. Start  
@@ -1262,8 +1278,11 @@ OUTPUT:   Input - Enter s1 and s2 :                                         Outp
                   ABCBDAB                                                   
                   BDCABB
 
-TIME COMPLEXITY: O(m  n)
-SPACE COMPLEXITY: O(m  n)
+TIME COMPLEXITY: O(m*n)
+SPACE COMPLEXITY: O(m*n)
+
+![image](https://github.com/user-attachments/assets/cb36133c-ea54-407b-a5e9-a732cdbf71c1)
+
 
 QUES 3 ->
 AIM: Write a program to solve the N-Queens Problem using backtracking and generate mirrored solutions. Place `n` queens on an `n×n` chessboard such that no two queens attack each other. Additionally, generate and display the mirrored solutions, including horizontal, vertical, and diagonal mirrors.
@@ -1327,6 +1346,8 @@ OUTPUT:  Input - Enter the number of queens: 4                 Output - Solution
 
 TIME COMPLEXITY:  O(n!)
 SPACE COMPLEXITY: O(n)
+![image](https://github.com/user-attachments/assets/a952bf8b-e4b8-493b-b8ab-43a0f5fc30e0)
+
 
 QUES 4 ->
 AIM:  Write a program to find all subsets of a given set of integers whose sum equals a specified value using backtracking.
@@ -1351,3 +1372,5 @@ OUTPUT:  Input -  Enter size: 5                                                 
 
 TIME COMPLEXITY:  O(2^n)
 SPACE COMPLEXITY:  O(n)
+
+![image](https://github.com/user-attachments/assets/382bc234-d5ca-448d-914c-7cc9db28c7bc)
