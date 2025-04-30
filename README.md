@@ -12,9 +12,9 @@ WORKING : 1. Start
              - Identify words present in both dictionaries.  
              - Multiply their frequencies and store in a new dictionary.  
           5. Compute Cosine Similarity:  
-             - Compute magnitude of each dictionary:  sqrt [sum (freq[word] * freq[word])]
+             - Compute magnitude of each dictionary:  sqrt [sum (freq[word]  freq[word])]
              - Compute dot product of common words.  
-             - Calculate similarity: a.b / |a|*|b|  
+             - Calculate similarity: a.b / |a||b|  
           6. Print Cosine Similarity Value  
           7. Stop
         
@@ -285,7 +285,7 @@ AIM : To implement and analyze the Merge Sort algorithm by measuring the time ta
 and recording the results.
 WORKING :   1. Start  
             2. Create two files, `time.csv` and `size.csv`, to store the time taken and array sizes.  
-            3. Loop over array sizes starting from 13 and increasing by a factor of `n * log(n) + 10`.  
+            3. Loop over array sizes starting from 13 and increasing by a factor of `n  log(n) + 10`.  
             4. For each size `n`:  
                - Create an array `arr` of size `n` with elements from 0 to n-1.  
                - Record the start time.  
@@ -316,7 +316,7 @@ QUES 7 ->
 AIM : To implement and analyze the Heap Sort algorithm by measuring the time taken for sorting arrays of increasing sizes.
 WORKING :   1. Start  
             2. Create two files, "heap_time.csv" and "heap_size.csv", to store the time taken and array sizes, respectively.  
-            3. Loop over array sizes starting from 13 and increasing by a factor of `n * log(n)`.  
+            3. Loop over array sizes starting from 13 and increasing by a factor of `n  log(n)`.  
             4. For each size n:  
                - Create an array arr of size n with elements from 0 to n-1.  
                - Record the start time.  
@@ -351,7 +351,7 @@ WORKING : 1. Start
           2. Create an array arr1 to store the array sizes and corresponding average time taken for binary search.  
           3. Initialize l = 0 and p = 1 to help with the loop iterations and determining array sizes.  
           4. Run the Experiment for Different Array Sizes. Loop through j to test different array sizes.  
-          5. Calculate size as 50 * p where p increases by a factor of 10 in each iteration.  
+          5. Calculate size as 50  p where p increases by a factor of 10 in each iteration.  
           6. Dynamically allocate an array arr of the computed size.  
           7. Fill the array arr with random numbers using the initialise() function.  
           8. Record the start time using chrono::high_resolution_clock::now().  
@@ -697,13 +697,13 @@ WORKING : 1. Start
              - `A00`, `A01`, `A10`, `A11`  
              - `B00`, `B01`, `B10`, `B11`  
           6. Compute the seven products using Strassen's formula:  
-             - `P = (A00 + A11) * (B00 + B11)`  
-             - `Q = (A10 + A11) * B00`  
-             - `R = A00 * (B01 - B11)`  
-             - `S = A11 * (B10 - B00)`  
-             - `T = (A00 + A01) * B11`  
-             - `U = (A10 - A00) * (B00 + B01)`  
-             - `V = (A01 - A11) * (B10 + B11)`  
+             - `P = (A00 + A11)  (B00 + B11)`  
+             - `Q = (A10 + A11)  B00`  
+             - `R = A00  (B01 - B11)`  
+             - `S = A11  (B10 - B00)`  
+             - `T = (A00 + A01)  B11`  
+             - `U = (A10 - A00)  (B00 + B01)`  
+             - `V = (A01 - A11)  (B10 + B11)`  
           7. Compute the four submatrices of the result matrix `C`:  
              - `C00 = P + S - T + V`  
              - `C01 = R + T`  
@@ -975,9 +975,9 @@ OUTPUT :    Input - Items (Storage, Profit):                                    
                      (5, 41)
                      Knapsack Capacity: 14
 
-TIME COMPLEXITY : O(n * c) 
+TIME COMPLEXITY : O(n  c) 
 
-SPACE COMPLEXITY : O(n * c)
+SPACE COMPLEXITY : O(n  c)
 
 ![image](https://github.com/user-attachments/assets/e88e647b-5332-483f-990b-f26160bd5fbb)
 
@@ -1029,7 +1029,7 @@ WORKING :1. Start
          5. Set `m[i][i] = 0` since multiplying one matrix needs no operations.  
          6. Loop through chain lengths from 2 to `n`, and calculate minimum cost for every subproblem `(i,j)`
             using the recurrence:  
-            m[i][j] = min (m[i][k] + m[k+1][j] + p[i-1] * p[k] * p[j])
+            m[i][j] = min (m[i][k] + m[k+1][j] + p[i-1]  p[k]  p[j])
             Update `s[i][j]` with the value of `k` that gives the minimum cost.  
          7. Use the `print` function to output the optimal parenthesization using values in `s[i][j]`.  
          8. Display the minimum number of scalar multiplications and the optimal way of parenthesizing the matrices.  
@@ -1087,7 +1087,7 @@ OUTPUT:    Input - Enter n: 4                                            Output 
                                                                                  (70, 5)
 
 TIME COMPLEXITY:  
-SPACE COMPLEXITY: O(n * P) due to storing multiple state combinations of profit and weight in sets.
+SPACE COMPLEXITY: O(n  P) due to storing multiple state combinations of profit and weight in sets.
 
 QUES 3 ->
 AIM: Write a program to implement the Traveling Salesman Problem (TSP) using Bitmask Dynamic Programming and determine 
@@ -1213,3 +1213,141 @@ OUTPUT:    Input - Enter the number of queens: 4                          Output
 
 TIME COMPLEXITY: O(n!)
 SPACE COMPLEXITY: O(n)
+
+
+LAB-10(24 April 2025)
+----------------------
+QUES 1 ->  
+AIM: Write a program to solve the Traveling Salesman Problem (TSP) using backtracking. Find a path that visits each of the `n` cities exactly once and returns to the starting city such that the total distance traveled is minimized.
+WORKING: 1. Start  
+         2. Input the number of cities (`n`)  
+         3. Create an array `x[n]` where `x[i]` represents the city position in the path for city `i`  
+         4. Initialize the cost matrix, where `cost[i][j]` represents the distance between city `i` and city `j`  
+         5. Call the recursive function `backtrack(0, x, cost, n)` to start finding the path from city 0  
+         6. Inside the `backtrack(k, x, cost, n)` function:  
+            - Try placing a city `i` at the `k`th position in the path  
+            - Use `nextVal(k, x, cost, n)` to check if placing city `i` at `k` is valid:  
+            - No city should repeat in the path  
+            - The path should not include a distance of zero  
+            - If valid, assign `x[k] = i`  
+            - If it's the last city (`k == n - 1`), print the solution using `write(x, n)`  
+            - Otherwise, recurse to the next city  
+         7. `write(x, n)` displays the path with city numbers  
+         8. Free memory allocated for `x` and end the program  
+         9. Stop.
+
+OUTPUT:   Input - Enter the number of cities: `6`                   Output -  Solution : 
+                                                                              1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 1 
+
+                                                                              Solution : 
+                                                                              1 -> 3 -> 4 -> 6 -> 2 -> 5 -> 1 
+
+TIME COMPLEXITY: O(n!)
+SPACE COMPLEXITY: O(n)
+
+QUES 2 ->
+AIM: Write a program to find the Longest Common Subsequence (LCS) of two given strings. The LCS is the longest subsequence that appears in both strings, not necessarily consecutively.
+WORKING: 1. Start  
+         2. Input two strings `s1` and `s2`.  
+         3. Define a 2D array `dp` of size `(m+1) x (n+1)` where `m` and `n` are the lengths of `s1` and `s2` respectively. This array will store the lengths of the LCS at different stages.  
+         4. Initialize the first row and first column of `dp` to 0 because the LCS of any string with an empty string is 0.  
+         5. For each pair of indices `(i, j)` where `1 <= i <= m` and `1 <= j <= n`:  
+            - If `s1[i-1] == s2[j-1]`, then `dp[i][j] = dp[i-1][j-1] + 1`. This means the current character is part of the LCS.  
+            - Otherwise, `dp[i][j] = max(dp[i-1][j], dp[i][j-1])`. This means we take the longer subsequence by either excluding the current character of `s1` or `s2`.  
+         6. The value at `dp[m][n]` will be the length of the LCS.  
+         7. Output the length of the LCS.  
+         8. Stop.
+ 
+OUTPUT:   Input - Enter s1 and s2 :                                         Output - Length of LCS: 4
+                  ABCBDAB                                                   
+                  BDCABB
+
+TIME COMPLEXITY: O(m  n)
+SPACE COMPLEXITY: O(m  n)
+
+QUES 3 ->
+AIM: Write a program to solve the N-Queens Problem using backtracking and generate mirrored solutions. Place `n` queens on an `n×n` chessboard such that no two queens attack each other. Additionally, generate and display the mirrored solutions, including horizontal, vertical, and diagonal mirrors.
+
+WORKING:    1. Start  
+            2. Input the number of queens (`n`), which is also the size of the chessboard.  
+            3. Define an array `x[n]` where `x[i]` represents the column position of the queen in row `i`.  
+            4. Define a 2D array `solutions[MAX_SOLUTIONS][100]` to store all solutions.  
+            5. Initialize `sol_count` to 0, which will keep track of the number of solutions found.  
+            6. Call the recursive function `NQueens(0, n, x, solutions, sol_count)` to place queens starting from row 0.  
+            7. Inside the `NQueens(k, n, x, solutions, sol_count)` function:
+               - Try placing a queen in each column `i` of row `k`.  
+               - Use `place(k, i, x)` to check if placing a queen in the current column `i` of row `k` is safe:
+               - Ensure no other queen is placed in the same column.
+               - Ensure no other queen is placed on the same diagonal.
+               - If valid, assign `x[k] = i` and recursively call `NQueens(k + 1, n, x, solutions, sol_count)` for the next row.
+               - If `k == n - 1`, store the current solution in the `solutions` array and increment `sol_count`.  
+            8. After obtaining all solutions, for each solution, generate and print the mirrors:
+               - Horizontal Mirror: Flip the rows.
+               - Vertical Mirror: Flip the columns.
+               - Diagonal Mirror: Swap row and column indices for queens.
+            9. The `print(x, n)` function displays the board configuration with `Q` representing a queen and `_` representing an empty spot.  
+            10. Stop.
+
+OUTPUT:  Input - Enter the number of queens: 4                 Output - Solution 1:  
+                                                                        _ Q _ _  
+                                                                        _ _ _ Q  
+                                                                        Q _ _ _  
+                                                                        _ _ Q _  
+
+                                                                        Solution 2:  
+                                                                        _ _ Q _  
+                                                                        _ Q _ _  
+                                                                        _ _ _ Q  
+                                                                        Q _ _ _  
+
+                                                                        Generated Mirrored Solutions:  
+                                                                        Solution 1 (Original):  
+                                                                        _ Q _ _  
+                                                                        _ _ _ Q  
+                                                                        Q _ _ _  
+                                                                        _ _ Q _  
+
+                                                                        Solution 1 (Horizontal Mirror):  
+                                                                        _ _ Q _  
+                                                                        Q _ _ _  
+                                                                        _ _ _ Q  
+                                                                        _ Q _ _  
+
+                                                                        Solution 1 (Vertical Mirror):  
+                                                                        _ _ Q _  
+                                                                        _ Q _ _  
+                                                                        Q _ _ _  
+                                                                        _ _ _ Q  
+
+                                                                        Solution 1 (Diagonal Mirror):  
+                                                                        _ _ Q _  
+                                                                        _ Q _ _  
+                                                                        _ _ _ Q  
+                                                                        Q _ _ _  
+
+TIME COMPLEXITY:  O(n!)
+SPACE COMPLEXITY: O(n)
+
+QUES 4 ->
+AIM:  Write a program to find all subsets of a given set of integers whose sum equals a specified value using backtracking.
+WORKING:    1. Start  
+            2. Input the size of the array (`n`), and the elements of the array (`arr[]`).  
+            3. Calculate the sum of all elements (`s`) in the array.  
+            4. Input the target sum (`m`).  
+            5. Define an array `x[n]` to keep track of whether an element is included in the subset or not.  
+            6. Call the recursive function `sum_subsequence(k, x, arr, s, r, m, n)` starting from index `k = 0`:
+               - Base Case: If `k >= n`, check if the sum of the selected subset (`s == m`), and if it is, print the subset using `print(arr, x, n)`.  
+               - Include Current Element: Include the element at `arr[k]` and recursively call `sum_subsequence(k + 1, x, arr, s + arr[k], r - arr[k], m, n)` to include the next element, ensuring the current sum does not exceed `m`.
+               - Exclude Current Element: Exclude the element at `arr[k]` and recursively call `sum_subsequence(k + 1, x, arr, s, r - arr[k], m, n)` to consider the next element, ensuring that excluding the element still allows the sum to be a valid candidate for a subset sum of `m`.
+            7. The `print(arr, x, n)` function prints the subset whose sum equals `m` by checking which elements were selected (those marked by `x[i] = 1`).
+            8. Stop.
+
+OUTPUT:  Input -  Enter size: 5                                                        Output - Solution:
+                  Enter elements: 1 2 3 4 5                                                     5
+                  Enter the sum: 5                                                              Solution:
+                                                                                                1 4  
+                                                                                                Solution:  
+                                                                                                2 3  
+
+TIME COMPLEXITY:  O(2^n)
+SPACE COMPLEXITY:  O(n)
