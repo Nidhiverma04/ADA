@@ -1260,6 +1260,8 @@ SPACE COMPLEXITY: O(n)
 
 ![image](https://github.com/user-attachments/assets/c3067f01-9624-42f5-827e-3ba00352aaac)
 
+![image](https://github.com/user-attachments/assets/44fa3d75-da9a-40c7-a1c6-8dc16255cb1a)
+
 
 QUES 2 ->
 AIM: Write a program to find the Longest Common Subsequence (LCS) of two given strings. The LCS is the longest subsequence that appears in both strings, not necessarily consecutively.
